@@ -1,0 +1,94 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: green;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #787878;
+}
+
+#wrapper {
+	width: 968px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* Header */
+
+#header {
+	width: 968px;
+	height: 150px;
+	margin: 0 auto;
+	background: url(images/img02.gif) no-repeat left top;
+}
+
+/* Logo */
+
+#logo {
+	float: left;
+	width: 968px;
+	height: 60px;
+	color: #616161;
+}
+
+#logo h1, #logo p {
+	margin: 0;
+	padding: 0;
+}
+
+#logo h1 {
+	float: left;
+	padding: 80px 0 0 80px;
+	letter-spacing: -1px;
+	text-transform: lowercase;
+	font-size: 2.6em;
+}
+
+#logo p {
+	float: left;
+	margin: 0;
+	padding: 90px 10px;
+	font: normal 14px Georgia, "Times New Roman", Times, serif;
+	font-style: italic;
+} 
+
+#menu {
+	width: 968px;
+	height: 50px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#page {
+	width: 968px;
+	margin: 0 auto;
+	background: url(images/img05.jpg) repeat-y left top;
+}
+
+#page-bgtop {
+	background: url(images/img04.jpg) no-repeat left top;
+}
+
+#page-bgbtm {
+	background: url(images/img06.jpg) no-repeat left bottom;
+}
+
+#footer {
+	height: 50px;
+	margin: 0 auto;
+	padding: 0px 0 15px 0;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #B2B2B2;
+}
+
+#footer p {
+	margin: 0;
+	line-height: normal;
+	font-size: 9px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#footer a {
+	color: #3D444F;
+}
