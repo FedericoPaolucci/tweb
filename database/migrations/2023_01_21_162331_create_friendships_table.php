@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAmiciziaTable extends Migration
+class CreateFriendshipsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAmiciziaTable extends Migration
      */
     public function up()
     {
-        Schema::create('amicizia', function (Blueprint $table) {
+        Schema::create('friendships', function (Blueprint $table) {
             $table->unsignedBigInteger('id_user1');
             $table->unsignedBigInteger('id_user2');
             $table->timestamp('added_at');
@@ -33,6 +33,6 @@ class CreateAmiciziaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amicizia');
+        Schema::dropIfExists('friendships');
     }
 }
