@@ -1,94 +1,129 @@
+/*font usato */
+
+@font-face {
+    font-family: 'oxygenregular';
+    src: url('oxygen-regular-webfont.woff2') format('woff2'),
+         url('oxygen-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/*stili base*/
+
+:root{
+    --clr-dark: #23252F;
+    --clr-light: #CCC9DC;
+    --clr-white: #EDF0F7;
+    --clr-blue: #516E8F;
+    --clr-brown: #AD8350;
+    --clr-red: #F24333;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-	margin: 0;
-	padding: 0;
-	background: green;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	color: #787878;
+    font-family: 'oxygenregular';
+    padding: 0;
+    line-height: 1.6;
+    word-spacing: 1.4px;
+    background-color: var(--clr-white);
+    display:flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-#wrapper {
-	width: 968px;
-	margin: 0 auto;
-	padding: 0;
+/* STILI NAVBAR */
+.menu,
+a,
+button{
+    font-weight: 300;
+    font-size: 14;
+    color: var(--clr-white);
+    text-decoration: none;
 }
 
-/* Header */
-
-#header {
-	width: 968px;
-	height: 150px;
-	margin: 0 auto;
-	background: url(images/img02.gif) no-repeat left top;
+button{
+    padding:9px 25px;
+    background: var(--clr-blue);
+    border:none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-left: 30px;
 }
 
-/* Logo */
-
-#logo {
-	float: left;
-	width: 968px;
-	height: 60px;
-	color: #616161;
+button:hover{
+    background-color: var(--clr-brown);
 }
 
-#logo h1, #logo p {
-	margin: 0;
-	padding: 0;
+#registrati:hover{
+    background-color: var(--clr-red);
 }
 
-#logo h1 {
-	float: left;
-	padding: 80px 0 0 80px;
-	letter-spacing: -1px;
-	text-transform: lowercase;
-	font-size: 2.6em;
+header{
+    background-color: var(--clr-dark);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 10%;
+    border-bottom:2px solid var(--clr-blue);
 }
 
-#logo p {
-	float: left;
-	margin: 0;
-	padding: 90px 10px;
-	font: normal 14px Georgia, "Times New Roman", Times, serif;
-	font-style: italic;
-} 
-
-#menu {
-	width: 968px;
-	height: 50px;
-	margin: 0 auto;
-	padding: 0;
+.logo{
+    font-size: 24px;
+    color: var(--clr-light);
+    margin-right: auto;
 }
 
-#page {
-	width: 968px;
-	margin: 0 auto;
-	background: url(images/img05.jpg) repeat-y left top;
+.menu{
+    list-style: none;
 }
 
-#page-bgtop {
-	background: url(images/img04.jpg) no-repeat left top;
+.menu li{
+    display: inline-block;
+    padding: 20px;
 }
 
-#page-bgbtm {
-	background: url(images/img06.jpg) no-repeat left bottom;
+.menu li a{
+    transition: all .3s ease;
 }
 
-#footer {
-	height: 50px;
-	margin: 0 auto;
-	padding: 0px 0 15px 0;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #B2B2B2;
+.menu a:hover{
+    color: var(--clr-brown);
+}
+/* fine NAVBAR */
+
+/* stili content */
+
+.content{
+    color: var(--clr-dark);
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    flex-grow: 1; /* per mantenere footer in fondo*/
 }
 
-#footer p {
-	margin: 0;
-	line-height: normal;
-	font-size: 9px;
-	text-transform: uppercase;
-	text-align: center;
+.content h1{
+    letter-spacing:.3px;
 }
 
-#footer a {
-	color: #3D444F;
+/*fine CONTENT */
+
+/*stili footer */
+
+footer{
+    background-color: var(--clr-dark);
+    color: var(--clr-white);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10%;
+    border-top:2px solid var(--clr-blue);
 }
