@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('role',10)->default('user');
             $table->boolean('visibility')->default(true);
+            $table->text('profile')->nullable();
+            $table->string('img_url',100)->default('/img/default.png');
             $table->rememberToken();
             $table->timestamps();
         });

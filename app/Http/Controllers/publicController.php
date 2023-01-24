@@ -12,7 +12,7 @@ class publicController extends Controller
         
         $var1 = User::where('id','1')
                 ->get()->first();
-        $var2 = 'bruh';
+        $var2 = 'but im not your bruh';
         
         
         return view('Public')
