@@ -11,12 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Routes homepage*/
 
-Route::get('/prova', 'publicController@prova')
-        ->name('prova');
+Route::get('/', 'publicController@home')
+        ->name('homepublic');
+
+Route::get('/user', 'UserController@index')
+        ->name('user')
+        ->middleware('user');
+
+Route::get('/staff', 'StaffController@index')
+        ->name('staff')
+        ->middleware('staff');
+
+Route::get('/admin', 'AdminController@index')
+        ->name('admin')
+        ->middleware('admin');
+
+/*FINE Routes homepage*/
 
 /* Routes per l'autenticazione */
 

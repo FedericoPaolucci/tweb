@@ -157,6 +157,30 @@ header{
     letter-spacing:.3px;
 }
 
+/*login content*/
+
+.button{
+	font-weight: bold;
+    font-size: 14;
+    color: var(--clr-dark);
+    text-decoration: none;
+	padding:9px 25px;
+    background: var(--clr-accent);
+    color: var(--clr-dark);
+    font-weight: bold;
+    border:none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0s linear;
+}
+
+.button:hover{
+    background-color: var(--clr-selacc);
+	color: var(--clr-white);
+}
+
+/*fine login content*/
+
 /*fine CONTENT */
 
 /*stili footer */

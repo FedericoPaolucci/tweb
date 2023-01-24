@@ -6,13 +6,19 @@
         <title>Homepage pubblica</title>
         </head>
     <body>
-        <div class="wrapper">
+        
             <!-- HEADER -->
             <header>
-                <p class="logo" onclick="location.href='{{route('prova')}}'"> LOGOCOMMUNITY </p>
+                <p class="logo" onclick="location.href='{{route('homepublic')}}'"> LOGOCOMMUNITY </p>
                 <ul class="menu">
                     <li><button id="login" onclick="location.href='{{route('login')}}'">LOGIN</button></li>
                     <li><button id="registrati" onclick="location.href='{{route('register')}}'">REGISTRATI</button></li>
+                    @auth
+        <li><a href="" class="highlight" title="Esci dal sito" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+    @endauth 
                 </ul>
             </header>
             <!-- FINE HEADER -->
@@ -29,7 +35,7 @@
                 </nav>
             </footer>
             <!-- FINE FOOTER-->
-        </div>
+        
     </body>
 </html>
 

@@ -1,10 +1,6 @@
 @extends ('layouts.public')
 
 @section ('content')
-<!--<h1>email: {{$user->email}}</h1>-->
-
-<!--<p>{{$user->name}} {{$user->surname}}, questo è il tuo nome</p>-->
-
 <h2>{{$oggetto}}</h2>  
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam semper lacinia molestie. Nunc ultrices ante nulla, non blandit urna feugiat sed. Donec id nulla placerat, tristique urna eu, ullamcorper tortor. Morbi tincidunt ac ex id sagittis. Praesent eget tempus justo. Fusce lacus nisi, lobortis id commodo non, egestas et tellus. Fusce placerat dictum lorem quis maximus. Aenean luctus erat vitae ipsum consequat, quis tempor odio posuere. Etiam sed libero nec lectus commodo consequat. Duis venenatis, ligula et finibus efficitur, augue purus congue nisi, ut pharetra quam enim faucibus sapien. Donec imperdiet gravida ex non ornare. Mauris nec lacus quis lectus bibendum tempus. Aliquam sed odio facilisis, sollicitudin dolor vitae, fringilla leo.
