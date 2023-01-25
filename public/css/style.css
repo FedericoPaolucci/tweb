@@ -1,4 +1,4 @@
-/*font usato */
+/*font usati */
 
 @font-face {
     font-family: 'oxygenregular';
@@ -6,7 +6,14 @@
          url('oxygen-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}
 
+@font-face {
+    font-family: 'victor_monoregular';
+    src: url('victormono-regular-webfont.woff2') format('woff2'),
+         url('victormono-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 /*stili base*/
@@ -17,9 +24,12 @@
 	--clr-white: #FCFCFC;
 			
 	--clr-secon: #7899D4;
+	--clr-seconlg: #C1D1EB;
 	
 	--clr-accent: #D3C5C8;
 	--clr-selacc: #7D6167;
+	--clr-green: #6FD890;
+	--clr-yellow: #EFA00B;
 	
 	--clr-dark: #000000;
 	/*fine palette default*/
@@ -30,15 +40,27 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+	text-decoration: none;
 }
 
-body {
+.bodydef {
     padding: 0;
     line-height: 1.6;
     word-spacing: 1.4px;
     background-color: var(--clr-secon);
     display:flex;
     flex-direction: column;
+    height: 100vh;
+}
+
+.bodyauth {
+    padding: 0;
+    line-height: 1.6;
+    word-spacing: 1.4px;
+    background-color: var(--clr-secon);
+    display:flex;
+    flex-direction: row;
+	justify-content:center;
     height: 100vh;
 }
 
@@ -60,10 +82,10 @@ body::-webkit-scrollbar-thumb{
 
 /* STILI HEADER */
 .menu,
-a,
+.link-footer,
 button{
-    font-weight: 300;
-    font-size: 14;
+	font-family: 'victor_monoregular';
+    font-weight: bold;
     color: var(--clr-dark);
     text-decoration: none;
 }
@@ -71,8 +93,9 @@ button{
 button{
     padding:9px 25px;
     background: var(--clr-accent);
+	
     color: var(--clr-dark);
-    font-weight: bold;
+	font-size: 16px;
     border:none;
     border-radius: 50px;
     cursor: pointer;
@@ -80,32 +103,50 @@ button{
 }
 
 button:hover{
-    background-color: var(--clr-selacc);
+    background: var(--clr-selacc);
 	color: var(--clr-white);
 }
 
-#registrati:hover{
-    background-color: var(--clr-selacc);
-}
 
 header{
+	position:relative;
     background-color: var(--clr-white);
 	/*stile bolla*/
 	margin-top: 20px;
 	margin-right: 50px;
 	margin-left: 50px;
-	border-radius: 30px;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
 	/*fine stile bolla*/
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 10%;
-    //box-shadow: 0px 0px 10px 2px var(--clr-dark);
+    padding: 15px 5% 5px 5%;
+}
+
+.border{
+	position: absolute;
+	left:8px;
+	top: 8px;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
+	width: 100%;
+	height: 100%;
+	border: 3px solid var(--clr-dark);
+	pointer-events: none;
+}
+
+#circularborder{
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
 }
 
 .logo{
-    font-size: 24px;
+	font-family: 'victor_monoregular';
+    font-size: 42px;
     color: var(--clr-dark);
     transition: all .5s ease;
 }
@@ -114,20 +155,26 @@ header{
     color: var(--clr-secon);
 }
 
+#logoheader{
+	position: relative;
+	left: -15px;
+	top:7px;
+}
+
 .menu{
     list-style: none;
 }
 
 .menu li{
     display: inline-block;
-    padding: 20px;
+    padding: 20px 20px 20px 20px;
 }
 
-.menu li a{
+.menu li .link-footer{
     transition: all .3s ease;
 }
 
-.menu a:hover{
+.menu .link-footer:hover{
     color: var(--clr-secon);
 }
 /* fine HEADER */
@@ -159,8 +206,48 @@ header{
 
 /*login content*/
 
+.window{
+	position:relative;
+	width: 570px;
+	color: var(--clr-dark);
+	background-color: var(--clr-white);
+    display: flex;
+    flex-direction: column;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius:30px;
+}
+
+#windowright{
+	margin-left:80px;
+}
+
+#windowleft{
+	margin-right:80px;
+}
+
+.auth-container{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	flex-grow:1;
+	margin: 50px 25px 50px 35px;
+}
+
+.contact-form{
+	display:flex;
+	flex-direction: column;
+	padding:50px 30px;
+	padding-top:0px;
+}
+
+.form-input-item, .form-item{
+	padding: 10px 0px;
+	padding-top: 0px;
+}
+
 .button{
-	font-weight: bold;
+	font-weight: 300;
     font-size: 14;
     color: var(--clr-dark);
     text-decoration: none;
@@ -195,4 +282,12 @@ footer{
     padding: 5px 10%;
 }
 
+#footerfloat{
+	border-bottom-right-radius:30px;
+	border-bottom-left-radius:30px;
+}
+
+.link-footer{
+	font-size: 14;
+}
 /*fine footer*/

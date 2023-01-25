@@ -5,36 +5,23 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
         <title>Homepage pubblica</title>
         </head>
-    <body>
+    <body class="bodyauth">
         
-            <!-- HEADER -->
-            <header>
-                <p class="logo" onclick="location.href='{{route('homepublic')}}'"> LOGOCOMMUNITY </p>
-                <ul class="menu">
-                    <li><button id="login" onclick="location.href='{{route('login')}}'">LOGIN</button></li>
-                    <li><button id="registrati" onclick="location.href='{{route('register')}}'">REGISTRATI</button></li>
-                    @auth
-        <li><a href="" class="highlight" title="Esci dal sito" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-        </form>
-    @endauth 
-                </ul>
-            </header>
-            <!-- FINE HEADER -->
-            <!-- INIZIO CONTENT -->
-            <section class="content">
-                @yield('content')
-            </section>
-            <!-- FINE CONTENT -->
-        
-            <!-- FOOTER -->
-            <footer>
+        <div class="window" id="windowleft">
+            <div class="border" id="circularborder"></div>
+            @yield('content')
+            <footer id="footerfloat">
                 <nav>
                     @include('layouts/_footer')
                 </nav>
             </footer>
-            <!-- FINE FOOTER-->
+        </div>
+        
+        <div class="window" id="windowright">
+            <div class="border" id="circularborder"></div>
+            @yield('loginform')
+        </div>
+            
         
     </body>
 </html>

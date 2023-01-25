@@ -8,10 +8,10 @@
     <p>Utilizza questa form per registrarti al sito</p>
 
     
-        <div class="auth-form">
+        
             {{ Form::open(array('route' => 'register', 'class' => 'contact-form')) }}
 
-            <div  class="input-item">
+            <div  class="form-input-item">
                 {{ Form::label('name', 'Nome', ['class' => 'label-input']) }}
                 {{ Form::text('name', '', ['class' => 'input', 'id' => 'name']) }}
                 
@@ -25,7 +25,7 @@
                 
             </div>
 
-            <div  class="input-item">
+            <div  class="form-input-item">
                 {{ Form::label('surname', 'Cognome', ['class' => 'label-input']) }}
                 {{ Form::text('surname', '', ['class' => 'input', 'id' => 'surname']) }}
                 
@@ -39,7 +39,7 @@
                 
             </div>
             
-             <div  class="input-item">
+             <div  class="form-input-item">
                 {{ Form::label('email', 'Email', ['class' => 'label-input']) }}
                 {{ Form::text('email', '', ['class' => 'input','id' => 'email']) }}
                 
@@ -53,7 +53,7 @@
                 
             </div>
             
-             <div  class="input-item">
+             <div  class="form-input-item">
                 {{ Form::label('username', 'Nome Utente', ['class' => 'label-input']) }}
                 {{ Form::text('username', '', ['class' => 'input','id' => 'username']) }}
                 
@@ -67,7 +67,7 @@
                 
             </div>
             
-             <div  class="input-item">
+             <div  class="form-input-item">
                 {{ Form::label('password', 'Password', ['class' => 'label-input']) }}
                 {{ Form::password('password', ['class' => 'input', 'id' => 'password']) }}
                 
@@ -81,17 +81,17 @@
                 
             </div>
 
-            <div  class="input-item">
+            <div  class="form-input-item">
                 {{ Form::label('password-confirm', 'Conferma password', ['class' => 'label-input']) }}
                 {{ Form::password('password_confirmation', ['class' => 'input', 'id' => 'password-confirm']) }}
             </div>
             
             <div class="form-button">                
-                {{ Form::submit('Registra', ['class' => 'button']) }}
+                {{ Form::submit('REGISTRA', ['class' => 'button']) }}
             </div>
             
             {{ Form::close() }}
-        </div>
+        
     
 
 </div>
