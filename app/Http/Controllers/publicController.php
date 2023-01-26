@@ -24,4 +24,16 @@ class publicController extends Controller
         }
     }
     
+    public function aboutus (){
+        return view('general.aboutus');
+    }
+    
+    public function info (){
+        return view('general.info');
+    }
+    
+    public function terms (){
+        return view('general.terms');
+    }
+    
 }

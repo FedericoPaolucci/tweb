@@ -2,8 +2,13 @@
 
 <!--@section('title', 'Registrazione') da implementare-->
 
-@section('content')
-<div class="auth-container">
+@section('script')
+        <script src="{{ asset('js/jquery.js')}}"></script>
+        <script src="{{ asset('js/animation.js')}}"></script>
+@endsection
+
+@section('loginform')
+<div class="auth-container" id="auth-idcont">
     <h3>Registrazione</h3>
     <p>Utilizza questa form per registrarti al sito</p>
 
@@ -95,4 +100,12 @@
     
 
 </div>
+@endsection
+
+@section('bottone')
+<div id="redirect">
+    <div class="container-text">Hai un account? Allora effettua il LOGIN!</div>
+    <button onclick= "location.href='{{ route('login') }}'">LOGIN</button>
+</div>
+
 @endsection

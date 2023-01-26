@@ -102,6 +102,13 @@ button{
     transition: all 0s linear;
 }
 
+#redirect{
+	display:flex;
+	flex-direction:column;
+	margin-top:auto;
+	align-items:center;
+}
+
 button:hover{
     background: var(--clr-selacc);
 	color: var(--clr-white);
@@ -148,11 +155,21 @@ header{
 	font-family: 'victor_monoregular';
     font-size: 42px;
     color: var(--clr-dark);
+	cursor: pointer;
     transition: all .5s ease;
 }
 
 .logo:hover{
     color: var(--clr-secon);
+}
+
+#secondary{
+	font-size: 28px;
+	margin-top:auto;
+}
+
+.logo#secondary:hover{
+	color: var(--clr-green);
 }
 
 #logoheader{
@@ -208,7 +225,7 @@ header{
 
 .window{
 	position:relative;
-	width: 570px;
+	width: 35%;
 	color: var(--clr-dark);
 	background-color: var(--clr-white);
     display: flex;
@@ -219,11 +236,11 @@ header{
 }
 
 #windowright{
-	margin-left:80px;
+	margin-left:4%;
 }
 
 #windowleft{
-	margin-right:80px;
+	margin-right:4%;
 }
 
 .auth-container{
@@ -233,6 +250,7 @@ header{
 	flex-grow:1;
 	margin: 50px 25px 50px 35px;
 }
+
 
 .contact-form{
 	display:flex;
@@ -268,6 +286,23 @@ header{
 
 /*fine login content*/
 
+/* animazione home*/
+
+.auth-container{
+	transition: all 1s ease;
+}
+
+.hidden{
+	display:none;
+	visibility: none;
+}
+
+.active{
+	visibility: visible;
+}
+
+/*fine animazione home*/
+
 /*fine CONTENT */
 
 /*stili footer */
@@ -279,7 +314,7 @@ footer{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 5px 10%;
+    padding: 5px 4%;
 }
 
 #footerfloat{
@@ -288,6 +323,26 @@ footer{
 }
 
 .link-footer{
+	cursor: pointer;
 	font-size: 14;
+}
+
+.container-text{
+	margin-top: 3px;
+	margin-bottom: 2px;
+	text-align: center;	
+}
+
+#what{
+	font-family: victor_monoregular;
+	font-size: 20px;
+	border: 3px solid var(--clr-green);
+	padding: 6px 20px 3px 20px;
+	border-top-left-radius:20px;
+	border-bottom-right-radius:20px;
+}
+
+#terms #aboutus #info{
+	justify-content:flex-end;
 }
 /*fine footer*/

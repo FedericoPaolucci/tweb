@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
         <title>Homepage pubblica</title>
-        </head>
+    </head>
     <body class="bodyauth">
         
         <div class="window" id="windowleft">
             <div class="border" id="circularborder"></div>
-            @yield('content')
+            @include('info/general')
             <footer id="footerfloat">
                 <nav>
                     @include('layouts/_footer')
@@ -22,7 +22,7 @@
             @yield('loginform')
         </div>
             
-        
+        @yield('script')
     </body>
 </html>
 
