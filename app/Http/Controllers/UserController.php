@@ -6,51 +6,61 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
-class UserController extends Controller
-{
-    public function index (){
-        $myid=Auth::id();
-        return redirect()->route('profiles',$myid);
+class UserController extends Controller {
+
+    public function index() {
+        $myid = Auth::id();
+        return redirect()->route('profiles', $myid);
     }
-    
-    public function searchindex(){
+
+    public function searchindex() {
         return view('friends.search');
     }
-    
-    public function edit(){
+
+    public function edit() {
         $current_user = User::find(Auth::id());
         return view('Profile.profile_edit', compact('current_user'));
     }
-    
-    public function update(Request $request){
+
+    public function update(Request $request) {
         $myuser = Auth::User();
         $request->validate([
             'name' => 'required|max:20',
             'surname' => 'required|max:20',
             'profile' => 'required|max:500']);
-        $url='/img/';
-        $nuovourl=$url.$request->input('img_url');
-        if($nuovourl!='/img/'){
+        $url = '/img/';
+        $nuovourl = $url . $request->input('img_url');
+        if ($nuovourl != '/img/') {
             $request->validate([
-            'img_url' => 'ends_with:png'           
+                'img_url' => 'ends_with:png'
             ]);
             $myuser->img_url = $nuovourl;
         }
-        
+
         $myuser->name = $request->input('name');
         $myuser->surname = $request->input('surname');
         $myuser->birthday = $request->input('birthday');
         $myuser->visibility = $request->input('visibility');
         $myuser->profile = $request->input('profile');
-        
-        
+
+
         $myuser->save();
         return redirect()->route('user');
     }
-    
-    public function show($thisid){
-        $that_user = User::where('id',$thisid)->first();
-        $currentid=Auth::id();
-        return view('Profile.show', compact('that_user'),compact('currentid'));
+
+    public function show($thisid) {
+        $that_user = User::where('id', $thisid)->first();
+        $currentid = Auth::id();
+        $isfriend='0';
+        foreach ($that_user->friends() as $friend) {
+            if ($friend->id == $currentid) {
+                $isfriend='1';
+            }
+        }
+        return view('Profile.show')
+            ->with(compact('that_user'))
+            ->with(compact('currentid'))
+            ->with(compact('isfriend'));
     }
+
 }

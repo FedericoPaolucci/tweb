@@ -17,7 +17,8 @@ class CreateFriendshipsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_user1');
             $table->unsignedBigInteger('id_user2');
-            $table->timestamp('added_at');
+            $table->boolean('accepted')->default(false);
+            $table->timestamps();
             $table->softDeletes(); //se viene rimossa l'amicizia, rimane comunque salvato nel db
             
             $table->foreign('id_user1')->references('id')->on('users');

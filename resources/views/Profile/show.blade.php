@@ -27,10 +27,17 @@
             @endisset  
         </div>
         
-        @if ($that_user->id == $currentid)
+        @if ($that_user->id == $currentid || $that_user->visibility == '1' || $isfriend == '1')
         <div class="profile-friends">
             <div class="title">
-                GRUPPO DEGLI AMICI
+                GRUPPO DEGLI AMICI 
+                <div class="allfriends">
+                @forelse ($that_user->friends() as $friend)
+                {{$friend->name}} {{$friend->surname}}
+                @empty
+                    <p>Nessun amico...</p>
+                @endforelse
+                </div>
             </div>
         @endif 
         
