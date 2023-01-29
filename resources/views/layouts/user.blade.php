@@ -10,7 +10,7 @@
         
             <!-- HEADER -->
             <header>
-                <p class="logo" onclick="location.href='{{route('user')}}'"> LOGOCOMMUNITY </p>
+                <p class="logo" id="logonav" onclick="location.href='{{route('user')}}'"> LOGOCOMMUNITY </p>
                 <ul class="menu">
                     
                     <li><button onclick= "location.href='{{ route('blog.index')}}'">IL TUO BLOG</button></li>

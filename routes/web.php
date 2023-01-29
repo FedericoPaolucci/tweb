@@ -42,6 +42,15 @@ Route::post('/blog/post_delete','PostController@destroy')
 Route::get('/search','UserController@searchindex')
         ->name('search');
 
+//Routes user
+Route::get('/profile/edit','UserController@edit')
+        ->name('profile.edit');
+
+Route::put('/profile/update','UserController@update')
+        ->name('profile.update');
+
+Route::get('/profile/{thisid}','UserController@show')
+        ->name('profiles');
 /* Routes per l'autenticazione */
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')
