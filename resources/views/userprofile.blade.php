@@ -2,7 +2,6 @@
 
 @section ('content')
 <section class="content">
-<div class="border" id="circularborder"></div>
 <h2>User</h2>  
 <div id="redirect">
     <div class="container-text">blog:</div>

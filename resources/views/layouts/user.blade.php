@@ -10,12 +10,11 @@
         
             <!-- HEADER -->
             <header>
-                <div class="border"></div>
                 <p class="logo" onclick="location.href='{{route('user')}}'"> LOGOCOMMUNITY </p>
                 <ul class="menu">
                     
                     <li><button onclick= "location.href='{{ route('blog.index')}}'">IL TUO BLOG</button></li>
-                    <li><button id="search" onclick="location.href='search'">RICERCA</button>
+                    <li><button id="search" onclick="location.href='{{route('search')}}'">RICERCA</button>
                     @auth
                         <li><button id="logout" title="Esci dal sito" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">LOG-OUT</button></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -32,7 +31,7 @@
             <!-- FINE CONTENT -->
         
             <!-- FOOTER -->
-            <footer>
+            <footer id="logged">
                 <nav>
                     @include('layouts/_footer')
                 </nav>

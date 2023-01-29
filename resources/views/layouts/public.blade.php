@@ -8,7 +8,6 @@
     <body class="bodyauth">
         
         <div class="window" id="windowleft">
-            <div class="border" id="circularborder"></div>
             @include('info/general')
             <footer id="footerfloat">
                 <nav>
@@ -18,7 +17,6 @@
         </div>
         
         <div class="window" id="windowright">
-            <div class="border" id="circularborder"></div>
             @yield('loginform')
         </div>
             

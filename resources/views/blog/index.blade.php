@@ -2,7 +2,6 @@
 
 @section ('content')
 <section class="content">
-    <div class="border" id="circularborder"></div>
 <h2>User</h2>  
 @empty($myblog)
 <div id="redirect">
