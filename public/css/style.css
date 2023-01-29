@@ -102,6 +102,10 @@ button{
     transition: all 0s linear;
 }
 
+button#logout:hover{
+	background: var(--clr-yellow);
+}
+
 #redirect{
 	display:flex;
 	flex-direction:column;
@@ -215,6 +219,7 @@ header{
 	border-radius:30px;
 	/*stile box*/
     flex-grow: 1; /* per mantenere footer in fondo*/
+	position:relative;
 }
 
 .content h1{
@@ -225,7 +230,7 @@ header{
 
 .window{
 	position:relative;
-	width: 35%;
+	width: 38%;
 	color: var(--clr-dark);
 	background-color: var(--clr-white);
     display: flex;
@@ -236,11 +241,11 @@ header{
 }
 
 #windowright{
-	margin-left:4%;
+	margin-left:2%;
 }
 
 #windowleft{
-	margin-right:4%;
+	margin-right:2%;
 }
 
 .auth-container{
@@ -249,6 +254,7 @@ header{
 	align-items: center;
 	flex-grow:1;
 	margin: 50px 25px 50px 35px;
+	overflow: auto;
 }
 
 
@@ -265,8 +271,9 @@ header{
 }
 
 .button{
+	font-family:victor_monoregular;
 	font-weight: 300;
-    font-size: 14;
+    font-size: 16px;
     color: var(--clr-dark);
     text-decoration: none;
 	padding:9px 25px;

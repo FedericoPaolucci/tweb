@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    //un solo blog appartiene a un solo user
+    public function blog(){
+        return $this->hasOne('App\Models\Blog','id_owner');
+    }
+    
+    //molti post appartengono ad un user
+    public function posts(){
+        return $this->hasMany('App\Models\Post','id_writer');
+    }
 }

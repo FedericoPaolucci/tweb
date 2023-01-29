@@ -30,6 +30,18 @@ Route::get('/admin', 'AdminController@index')
 
 /*FINE Routes homepage*/
 
+Route::resource('blog','BlogController'); //BLOG RESOURCES
+
+//Routes per i post nel blog
+Route::post('/post','PostController@store')
+        ->name('post');
+Route::post('/blog/post_delete','PostController@destroy')
+        ->name('post_delete');
+
+//Routes buttons
+Route::get('/search','UserController@searchindex')
+        ->name('search');
+
 /* Routes per l'autenticazione */
 
 Route::get('/login', 'Auth\LoginController@showLoginForm')

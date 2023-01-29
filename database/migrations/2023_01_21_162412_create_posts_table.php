@@ -20,8 +20,8 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->timestamp('posted_at');
             
-            $table->foreign('id_writer')->references('id')->on('users');
-            $table->foreign('id_blog_owner')->references('id_owner')->on('blogs');
+            $table->foreign('id_writer')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_blog_owner')->references('id_owner')->on('blogs')->onDelete('cascade');
         });
     }
 
