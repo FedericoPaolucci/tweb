@@ -79,4 +79,32 @@ class User extends Authenticatable {
     public function friends() {
         return $this->acceptedFriendsTo->merge($this->acceptedFriendsFrom);
     }
+    
+    public function notyetfriends() {
+        return $this->notyetFriendsTo->merge($this->notyetFriendsFrom);
+    }
+    
+    public function isfriend($thisid){
+        $myuser=$this->friends()
+                ->where('id',$thisid)
+                ->first();
+        if($myuser === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    public function ispending($thisid){
+        $myuser=$this->notyetfriends()
+                ->where('id',$thisid)
+                ->first();
+        if($myuser === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

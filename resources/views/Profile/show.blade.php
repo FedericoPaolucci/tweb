@@ -15,6 +15,15 @@
         <button id="margintop" onclick= "location.href='{{ route('profile.edit')}}'">MODIFICA PROFILO</button>
         @endif
         
+        <!--AGGIUNGI AMICO-->
+        @if ($that_user->isfriend($currentid) || $that_user->id == $currentid || $that_user->ispending($currentid))
+        @else
+        <button id="margintop" onclick= "location.href='{{ route('friendrequest',$that_user->id)}}'">AGGIUNGI AMICO</button>
+        @endif
+        @if ($that_user->ispending($currentid))
+        <p>Richiesta già inviata.</p>
+        @endif
+        
     </div>
 
     <div class="content" id="content-right">

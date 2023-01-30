@@ -62,5 +62,31 @@ class UserController extends Controller {
             ->with(compact('currentid'))
             ->with(compact('isfriend'));
     }
+    
+    //function dei messaggi
+    
+    public function messages(){
+        $myuser=Auth::User();
+        $toaccept=$myuser->notyetFriendsFrom;
+        return view('Profile.message')
+            ->with(compact('toaccept'));
+    }
+    
+    public function friendaccept($id){
+        $myuser=Auth::User();
+        $myuser->friendsFrom()
+                ->where('id_user1',$id)
+                ->get();
+        $myuser->friendsFrom()->updateExistingPivot($id, ['accepted' => true]);
+        
+        return redirect()->route('user');
+    }
 
+    public function friendrequest($id_user2)
+    {
+        $user1=Auth::User();
+        $user1->friendsTo()->attach($id_user2);
+        return redirect()->route('profiles',$id_user2);
+        
+    }
 }

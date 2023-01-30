@@ -42,6 +42,15 @@ Route::post('/blog/post_delete','PostController@destroy')
 Route::post('/search','SearchController@find')
         ->name('search');
 
+Route::get('/messages','UserController@messages')
+        ->name('messages');
+
+Route::get('/messages/accept/{id}','UserController@friendaccept')
+        ->name('friendaccept');
+
+Route::get('/messages/request/{id}','UserController@friendrequest')
+        ->name('friendrequest');
+
 //Routes user
 Route::get('/profile/edit','UserController@edit')
         ->name('profile.edit');
