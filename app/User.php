@@ -79,5 +79,4 @@ class User extends Authenticatable {
     public function friends() {
         return $this->acceptedFriendsTo->merge($this->acceptedFriendsFrom);
     }
-
 }

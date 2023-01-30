@@ -1,8 +1,6 @@
 //COMPARSA / SCOMPARSA ELEMENTI HOMEPAGE FOOTER
 $(function() {
     $(".link-footer").click(function(e) {
-        
-		
 		var activeid= " ";
 		var id_click = e.target.id;
 		$( ".auth-container" ).each(function() {

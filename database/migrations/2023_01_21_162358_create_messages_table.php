@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->unsignedBigInteger('id_sent_to');
             $table->text('body');
             $table->set('type', ['normal','request','removed','notice'])->default('normal');
+            $table->boolean('viewed')->default(false);
             $table->timestamp('writed_at');
             
             $table->softDeletes();

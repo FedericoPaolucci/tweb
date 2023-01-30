@@ -2,13 +2,14 @@
 
 @section ('content')
 <div class="content-container">
+    
     <div class="content" id="content-left">
         <div class="image-container">
             <img src="{{ asset($that_user->img_url) }}" class="profile-img">
         </div>
         <h2>{{$that_user->name}} {{$that_user->surname}}</h2> 
         <p>#{{$that_user->username}}</p>
-        <h4>Data di nascita: {{ Carbon\Carbon::parse($that_user->birthday)->format('d-m-Y') }}</h4>
+        <p>Data di nascita: {{ Carbon\Carbon::parse($that_user->birthday)->format('d-m-Y') }}</p>
         
         @if ($that_user->id == $currentid)
         <button id="margintop" onclick= "location.href='{{ route('profile.edit')}}'">MODIFICA PROFILO</button>
@@ -21,6 +22,7 @@
             <div class="profile-item">
                 <h2>Su di me.</h2>
                 <p>{{$that_user->profile}}</p>
+                
             </div>
             @isset($that_user->blog)
             <p>Ho scritto questo Blog -> "{{$that_user->blog->subject}}"</p>
@@ -44,4 +46,9 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section ('script')
+        <script src="{{ asset('js/jquery.js')}}"></script>
+        <script src="{{ asset('js/animation.js')}}"></script>
 @endsection
