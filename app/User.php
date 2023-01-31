@@ -47,16 +47,18 @@ class User extends Authenticatable {
         return $this->hasMany('App\Models\Post', 'id_writer');
     }
 
-    //amicizia
+    //AMICIZIA
     public function friendsTo() {
         return $this->belongsToMany('App\User', 'friendships', 'id_user1', 'id_user2')
                         ->withPivot('accepted')
+                    ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
 
     public function friendsFrom() {
         return $this->belongsToMany('App\User', 'friendships', 'id_user2', 'id_user1')
                         ->withPivot('accepted')
+                    ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
 
@@ -98,6 +100,71 @@ class User extends Authenticatable {
     
     public function ispending($thisid){
         $myuser=$this->notyetfriends()
+                ->where('id',$thisid)
+                ->first();
+        if($myuser === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    //FINE AMICIZIA
+    
+    //SISTEMA DI MESSAGGISTICA E NOTIFICHE
+    public function messageTo() {
+        return $this->belongsToMany('App\User', 'messages', 'id_sender', 'id_sent_to')
+                        ->withPivot('viewed','type','body')
+                    ->wherePivot('deleted_at', null)
+                        ->withTimestamps();
+    }
+
+    public function messageFrom() {
+        return $this->belongsToMany('App\User', 'messages', 'id_sent_to', 'id_sender')
+                        ->withPivot('viewed','type','body')
+                    ->wherePivot('deleted_at', null)
+                        ->withTimestamps();
+    }
+    
+    public function notyetviewedTo() {
+        return $this->messageTo()->wherePivot('viewed', false);
+    }
+
+    public function notyetviewedFrom() {
+        return $this->messageFrom()->wherePivot('viewed', false);
+    }
+
+    public function viewedTo() {
+        return $this->messageTo()->wherePivot('viewed', true);
+    }
+
+    public function viewedFrom() {
+        return $this->messageFrom()->wherePivot('viewed', true);
+    }
+
+    public function viewed() {
+        return $this->viewedTo->merge($this->viewedFrom);
+    }
+    
+    public function notyetviewed() {
+        return $this->notyetviewedTo->merge($this->notyetviewedFrom);
+    }
+    
+    public function isviewed($thisid){
+        $myuser=$this->viewed()
+                ->where('id',$thisid)
+                ->first();
+        if($myuser === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    public function isnotyetviewed($thisid){
+        $myuser=$this->notyetviewed()
                 ->where('id',$thisid)
                 ->first();
         if($myuser === null){

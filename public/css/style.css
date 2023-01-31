@@ -402,6 +402,9 @@ footer{
 	padding: 4px 10px;
 	width:30%;
 	flex-direction:column;
+	align-items:center;
+	display: flex;
+    justify-content: space-between;
 }
 
 .profile-friends, .profile{
@@ -469,4 +472,10 @@ footer{
 	align-items: center;
     display: flex;
 	padding-left:50px;
+}
+
+.side .allfriends{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
 }

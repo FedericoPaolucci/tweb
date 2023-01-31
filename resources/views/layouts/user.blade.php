@@ -33,7 +33,7 @@
 
             <ul class="menu">
                 <li><button onclick= "location.href ='{{ route('messages')}}'">MESSAGGI</button></li>
-                <li><button onclick= "location.href ='{{ route('blog.index')}}'">BLOG</button></li>
+                <li><button onclick= "location.href ='{{ route('blog.index')}}'">IL MIO BLOG</button></li>
                 <li><button onclick= "location.href ='{{ route('user')}}'">PROFILO</button></li>
 
                 @auth

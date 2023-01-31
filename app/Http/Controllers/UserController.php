@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\User;
 
 class UserController extends Controller {
@@ -63,13 +64,15 @@ class UserController extends Controller {
             ->with(compact('isfriend'));
     }
     
-    //function dei messaggi
+    //MESSAGGI E AMICI
     
     public function messages(){
         $myuser=Auth::User();
         $toaccept=$myuser->notyetFriendsFrom;
+        $toview=$myuser->notyetviewedFrom;
         return view('Profile.message')
-            ->with(compact('toaccept'));
+            ->with(compact('toaccept'))
+                ->with(compact('toview'));
     }
     
     public function friendaccept($id){
@@ -88,5 +91,19 @@ class UserController extends Controller {
         $user1->friendsTo()->attach($id_user2);
         return redirect()->route('profiles',$id_user2);
         
+    }
+    
+    public function friendremove($id){
+        $myuser=Auth::User();
+        DB::table('friendships')
+        ->where('id_user1', $myuser->id)
+        ->where('id_user2', $id)
+        ->update(array('deleted_at' => DB::raw('NOW()')));
+        DB::table('friendships')
+        ->where('id_user1', $id)
+        ->where('id_user2', $myuser->id)
+        ->update(array('deleted_at' => DB::raw('NOW()')));
+        
+        return redirect()->route('user');
     }
 }

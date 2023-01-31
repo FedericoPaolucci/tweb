@@ -51,6 +51,9 @@ Route::get('/messages/accept/{id}','UserController@friendaccept')
 Route::get('/messages/request/{id}','UserController@friendrequest')
         ->name('friendrequest');
 
+Route::get('/messages/remove/{id}','UserController@friendremove')
+        ->name('friendremove');
+
 //Routes user
 Route::get('/profile/edit','UserController@edit')
         ->name('profile.edit');

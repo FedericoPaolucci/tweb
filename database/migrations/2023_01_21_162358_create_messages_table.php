@@ -20,7 +20,7 @@ class CreateMessagesTable extends Migration
             $table->text('body');
             $table->set('type', ['normal','request','removed','notice'])->default('normal');
             $table->boolean('viewed')->default(false);
-            $table->timestamp('writed_at');
+            $table->timestamps();
             
             $table->softDeletes();
             
