@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable {
 
@@ -51,14 +52,14 @@ class User extends Authenticatable {
     public function friendsTo() {
         return $this->belongsToMany('App\User', 'friendships', 'id_user1', 'id_user2')
                         ->withPivot('accepted')
-                    ->wherePivot('deleted_at', null)
+                        ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
 
     public function friendsFrom() {
         return $this->belongsToMany('App\User', 'friendships', 'id_user2', 'id_user1')
                         ->withPivot('accepted')
-                    ->wherePivot('deleted_at', null)
+                        ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
 
@@ -81,52 +82,49 @@ class User extends Authenticatable {
     public function friends() {
         return $this->acceptedFriendsTo->merge($this->acceptedFriendsFrom);
     }
-    
+
     public function notyetfriends() {
         return $this->notyetFriendsTo->merge($this->notyetFriendsFrom);
     }
-    
-    public function isfriend($thisid){
-        $myuser=$this->friends()
-                ->where('id',$thisid)
+
+    public function isfriend($thisid) {
+        $myuser = $this->friends()
+                ->where('id', $thisid)
                 ->first();
-        if($myuser === null){
+        if ($myuser === null) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
-    
-    public function ispending($thisid){
-        $myuser=$this->notyetfriends()
-                ->where('id',$thisid)
+
+    public function ispending($thisid) {
+        $myuser = $this->notyetfriends()
+                ->where('id', $thisid)
                 ->first();
-        if($myuser === null){
+        if ($myuser === null) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
-    
+
     //FINE AMICIZIA
-    
     //SISTEMA DI MESSAGGISTICA E NOTIFICHE
     public function messageTo() {
         return $this->belongsToMany('App\User', 'messages', 'id_sender', 'id_sent_to')
-                        ->withPivot('viewed','type','body')
-                    ->wherePivot('deleted_at', null)
+                        ->withPivot('viewed', 'type', 'body')
+                        ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
 
     public function messageFrom() {
         return $this->belongsToMany('App\User', 'messages', 'id_sent_to', 'id_sender')
-                        ->withPivot('viewed','type','body')
-                    ->wherePivot('deleted_at', null)
+                        ->withPivot('viewed', 'type', 'body')
+                        ->wherePivot('deleted_at', null)
                         ->withTimestamps();
     }
-    
+
     public function notyetviewedTo() {
         return $this->messageTo()->wherePivot('viewed', false);
     }
@@ -146,32 +144,31 @@ class User extends Authenticatable {
     public function viewed() {
         return $this->viewedTo->merge($this->viewedFrom);
     }
-    
+
     public function notyetviewed() {
         return $this->notyetviewedTo->merge($this->notyetviewedFrom);
     }
-    
-    public function isviewed($thisid){
-        $myuser=$this->viewed()
-                ->where('id',$thisid)
+
+    public function isviewed($thisid) {
+        $myuser = $this->viewed()
+                ->where('id', $thisid)
                 ->first();
-        if($myuser === null){
+        if ($myuser === null) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
-    
-    public function isnotyetviewed($thisid){
-        $myuser=$this->notyetviewed()
-                ->where('id',$thisid)
+
+    public function isnotyetviewed($thisid) {
+        $myuser = $this->notyetviewed()
+                ->where('id', $thisid)
                 ->first();
-        if($myuser === null){
+        if ($myuser === null) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
+
 }

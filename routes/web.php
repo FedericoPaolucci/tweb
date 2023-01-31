@@ -38,12 +38,16 @@ Route::post('/post','PostController@store')
 Route::post('/blog/post_delete','PostController@destroy')
         ->name('post_delete');
 
-//Routes buttons
+//Routes search
 Route::post('/search','SearchController@find')
         ->name('search');
 
-Route::get('/messages','UserController@messages')
+//ROUTES MESSAGES E FRIENDS
+Route::get('/messages','MessagesController@messages')
         ->name('messages');
+
+Route::get('/messages/{id}','MessagesController@messagesview')
+        ->name('messagesview');
 
 Route::get('/messages/accept/{id}','UserController@friendaccept')
         ->name('friendaccept');

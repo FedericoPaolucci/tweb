@@ -64,19 +64,10 @@ class UserController extends Controller {
             ->with(compact('isfriend'));
     }
     
-    //MESSAGGI E AMICI
-    
-    public function messages(){
-        $myuser=Auth::User();
-        $toaccept=$myuser->notyetFriendsFrom;
-        $toview=$myuser->notyetviewedFrom;
-        return view('Profile.message')
-            ->with(compact('toaccept'))
-                ->with(compact('toview'));
-    }
-    
+    //AMICI
     public function friendaccept($id){
         $myuser=Auth::User();
+        $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
         $myuser->friendsFrom()
                 ->where('id_user1',$id)
                 ->get();
@@ -89,12 +80,14 @@ class UserController extends Controller {
     {
         $user1=Auth::User();
         $user1->friendsTo()->attach($id_user2);
+        $user1->messageTo()->attach($id_user2,['type'=>'request','body'=>'amicizia']);
         return redirect()->route('profiles',$id_user2);
-        
     }
     
     public function friendremove($id){
         $myuser=Auth::User();
+        $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
+        $myuser->messageTo()->attach($id,['type'=>'removed','body'=>'rimozione']);
         DB::table('friendships')
         ->where('id_user1', $myuser->id)
         ->where('id_user2', $id)
