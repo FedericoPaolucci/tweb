@@ -35,6 +35,7 @@ Route::resource('blog','BlogController'); //BLOG RESOURCES
 //Routes per i post nel blog
 Route::post('/post','PostController@store')
         ->name('post');
+
 Route::post('/blog/post_delete','PostController@destroy')
         ->name('post_delete');
 
@@ -48,6 +49,9 @@ Route::get('/messages','MessagesController@messages')
 
 Route::get('/messages/{id}','MessagesController@messagesview')
         ->name('messagesview');
+
+Route::post('/messages/store','MessagesController@store')
+        ->name('messageswrite');
 
 Route::get('/messages/accept/{id}','UserController@friendaccept')
         ->name('friendaccept');

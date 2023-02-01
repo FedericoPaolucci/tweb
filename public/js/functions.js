@@ -21,6 +21,25 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	/*$(document).on('click','#sendnotify',function(){
+			var thisclick = $(this);
+			var blog_id = thisclick.attr('alt');
+			$.ajax({
+				type: "POST",
+				url: "send_notify",
+				data: {
+					'id_blog':blog_id
+				},
+				success: function (res){
+					if(res.status == 200){
+						alert(res.message);
+					}else{
+						alert(res.message);
+					}
+				}
+			});
+	});*/
 });
 
 function readURL(input) {

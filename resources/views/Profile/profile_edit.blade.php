@@ -1,14 +1,16 @@
 @extends ('layouts.user')
 
 @section ('content')
-<div class="content-container">
-    <div class="content" id="content-left">
-        <div class="image-container">
-            <img src="{{ asset($current_user->img_url) }}" class="profile-img">
+<div class="content-container content">
+    <div class="subcontent" id="left">
+        <div class="profile-me">
+            <div class="image-container">
+                <img src="{{ asset($current_user->img_url) }}" class="profile-img">
+            </div>
         </div>
     </div>
 
-    <div class="content" id="content-right">
+    <div class="subcontent" id="center">
         <div class="profile">
             <!--FORM MODIFICA-->
             {{ Form::open(array('route' => 'profile.update', 'class' => 'contact-form')) }}
@@ -82,7 +84,7 @@
                 </ul>
                 @endif
             </div>
-            
+
 
             <div class="form-button">                
                 {{ Form::submit('MODIFICA', ['class' => 'button']) }}
@@ -90,13 +92,13 @@
 
             {{ Form::close() }}
         </div>
-
     </div>
+    <div class="subcontent" id="right"></div>
 </div>
-</div>
+
 @endsection
 
 @section ('script')
-        <script src="{{ asset('js/jquery.js')}}"></script>
-        <script src="{{ asset('js/functions.js')}}"></script>
+<script src="{{ asset('js/jquery.js')}}"></script>
+<script src="{{ asset('js/functions.js')}}"></script>
 @endsection

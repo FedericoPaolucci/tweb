@@ -379,7 +379,7 @@ footer{
 .content-container{
 	display:grid;
 	grid-template-columns: 330px 20px auto 20px 330px;
-	grid-template-rows: 460px 30px auto;
+	grid-template-rows: 460px;
 	background: linear-gradient(var(--clr-plat) 70%, var(--clr-white) 100%);
 }
 
@@ -439,7 +439,27 @@ footer{
 	padding:20px 30px;
 	height: 100%;
 	background: var(--clr-white);
-	border-radius: 30px;
+	border-radius: 20px;
+}
+
+.inlisted{
+	display: flex;
+	flex-direction:column;
+	width:auto;
+	justify-content: flex-end;
+	border-radius: 20px;
+}
+
+.inlisted#reversed{
+	display: flex;
+	flex-direction:column-reverse;
+	width:auto;
+	justify-content: flex-end;
+	border-radius: 20px;
+}
+
+.listed#spacebetween{
+	justify-content:space-between;
 }
 
 .title{
@@ -500,5 +520,11 @@ footer{
 .side .allfriends{
 	display:flex;
 	flex-direction:column;
+	align-items:center;
+}
+
+.unite{
+	display: flex;
+    flex-direction: column;
 	align-items:center;
 }

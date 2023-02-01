@@ -68,7 +68,10 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        return view('blog.show',compact('blog'));
+        $posts = $blog->posts()->orderby('posted_at','desc')->paginate(10);
+        return view('blog.show')
+                ->with('posts',$posts)
+                ->with('blog',$blog);
     }
 
     /**
