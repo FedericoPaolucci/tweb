@@ -1,37 +1,38 @@
 @extends ('layouts.user')
 
 @section ('content')
-<div class="content-container">
+<div class="content-container content">
     <!--RIASSUNTO PROFILO-->
-    <div class="content" id="content-left">
-        <div class="image-container">
-            <img src="{{ asset($that_user->img_url) }}" class="profile-img">
+    <div class="subcontent" id="left">
+        <div class="profile-me">
+            <div class="image-container">
+                <img src="{{ asset($that_user->img_url) }}" class="profile-img">
+            </div>
+            <h2>{{$that_user->name}} {{$that_user->surname}}</h2> 
+            <p>#{{$that_user->username}}</p>
+            <p>Data di nascita: {{ Carbon\Carbon::parse($that_user->birthday)->format('d-m-Y') }}</p>
+
+            @if ($that_user->id == $currentid)
+            <button id="margintop" onclick= "location.href ='{{ route('profile.edit')}}'">MODIFICA PROFILO</button>
+            @endif
+
+            <!--AGGIUNGI AMICO-->
+            @if ($that_user->isfriend($currentid) || $that_user->id == $currentid || $that_user->ispending($currentid))
+            @else
+            <button id="margintop" onclick= "location.href ='{{ route('friendrequest',$that_user->id)}}'">AGGIUNGI AMICO</button>
+            @endif
+            @if ($that_user->ispending($currentid) && $that_user->id != $currentid)
+            <p>Richiesta già inviata.</p>
+            @endif
+            <!--RIMUOVI AMICO-->
+            @if ($that_user->isfriend($currentid))
+            <button id="margintop" onclick= "location.href ='{{ route('friendremove',$that_user->id)}}'">RIMUOVI AMICO</button>
+            @endif
         </div>
-        <h2>{{$that_user->name}} {{$that_user->surname}}</h2> 
-        <p>#{{$that_user->username}}</p>
-        <p>Data di nascita: {{ Carbon\Carbon::parse($that_user->birthday)->format('d-m-Y') }}</p>
-
-        @if ($that_user->id == $currentid)
-        <button id="margintop" onclick= "location.href ='{{ route('profile.edit')}}'">MODIFICA PROFILO</button>
-        @endif
-
-        <!--AGGIUNGI AMICO-->
-        @if ($that_user->isfriend($currentid) || $that_user->id == $currentid || $that_user->ispending($currentid))
-        @else
-        <button id="margintop" onclick= "location.href ='{{ route('friendrequest',$that_user->id)}}'">AGGIUNGI AMICO</button>
-        @endif
-        @if ($that_user->ispending($currentid) && $that_user->id != $currentid)
-        <p>Richiesta già inviata.</p>
-        @endif
-        <!--RIMUOVI AMICO-->
-        @if ($that_user->isfriend($currentid))
-        <button id="margintop" onclick= "location.href ='{{ route('friendremove',$that_user->id)}}'">RIMUOVI AMICO</button>
-        @endif
-
     </div>
 
     <!--PROFILO-->
-    <div class="content" id="content-right">
+    <div class="subcontent" id="center">
         <div class="profile">
             @if ($that_user->id == $currentid || $that_user->visibility == '1' || $isfriend == '1')
             <div class="profile-item">
@@ -46,7 +47,10 @@
             <p>L'utente è visibile solo ai suoi amici</p>
             @endif
         </div>
-        <!-- TABELLA LATERALE-->
+    </div>
+
+    <!-- TABELLA LATERALE-->
+    <div class="subcontent" id="right">
         <div class="profile-friends">
             <!-- TABELLA AMICI-->
             @if ($that_user->id == $currentid || $that_user->visibility == '1' || $isfriend == '1')
