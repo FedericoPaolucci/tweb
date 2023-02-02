@@ -10,7 +10,9 @@
             </div>
             <h2>{{$that_user->name}} {{$that_user->surname}}</h2> 
             <p>#{{$that_user->username}}</p>
+            @if ($that_user->isfriend($currentid) || $that_user->id == $currentid)
             <p>Data di nascita: {{ Carbon\Carbon::parse($that_user->birthday)->format('d-m-Y') }}</p>
+            @endif
 
             @if ($that_user->id == $currentid)
             <button id="margintop" onclick= "location.href ='{{ route('profile.edit')}}'">MODIFICA PROFILO</button>
@@ -26,7 +28,7 @@
             @endif
             <!--RIMUOVI AMICO-->
             @if ($that_user->isfriend($currentid))
-            <button id="margintop" onclick= "location.href ='{{ route('friendremove',$that_user->id)}}'">RIMUOVI AMICO</button>
+            <button class='areyousure2' id="margintop" onclick= "location.href ='{{ route('friendremove',$that_user->id)}}'">RIMUOVI AMICO</button>
             @endif
         </div>
     </div>
@@ -40,9 +42,22 @@
                 <p>{{$that_user->profile}}</p>
 
             </div>
-            @isset($that_user->blog)
-            <p>Ho scritto questo Blog -> "{{$that_user->blog->subject}}"</p>
-            @endisset
+
+            <div class="centered"> 
+                @isset($that_user->blog)
+                <button onclick= "location.href ='{{ route('blog.show', $that_user->id)}}'">VISUALIZZA BLOG</button>
+                @endisset
+
+                @if ($that_user->id == $currentid)
+                @empty($that_user->blog)
+                <div id="redirect">
+                    <div class="container-text">CREA IL TUO BLOG!</div>
+                    <button onclick= "location.href ='{{ route('blog.create') }}'">CREA BLOG</button>
+                </div>
+                @endempty
+                @endif
+            </div>
+            
             @else
             <p>L'utente è visibile solo ai suoi amici</p>
             @endif
@@ -66,9 +81,6 @@
                     @endforelse
                 </div>
             </div>
-            <div class="allfriends">
-                <button onclick= "location.href ='{{ route('blog.show', $that_user->id)}}'">BLOG</button>
-            </div>
             @endif 
         </div>
     </div>
@@ -79,4 +91,5 @@
 @section ('script')
 <script src="{{ asset('js/jquery.js')}}"></script>
 <script src="{{ asset('js/animation.js')}}"></script>
+<script src="{{ asset('js/functions.js')}}"></script>
 @endsection

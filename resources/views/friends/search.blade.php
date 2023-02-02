@@ -6,9 +6,14 @@
     <div class="subcontent" id="center">
         <div class="listed">
             @foreach ($found as $user)
-            <p> {{$user->name}} {{$user->surname}} 
-                Vai al profilo: <button onclick= "location.href ='{{ route('profiles',$user->id)}}'">PROFILO</button>
-            </p>
+            <div class="searchviewer"> 
+                <div class="searchinfo">
+                    <h3>{{$user->name}} {{$user->surname}}</h3>
+                    <div class="gotoprofile">
+                    Vai al profilo: <button onclick= "location.href ='{{ route('profiles',$user->id)}}'">PROFILO</button>
+                    </div>
+                </div>
+            </div>
             @endforeach
 
         </div>

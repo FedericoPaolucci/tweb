@@ -36,7 +36,7 @@ class PostController extends Controller {
         if (Auth::check()) {
             if (Auth::id() != $request->id_blog_owner) {
                 DB::table('messages')->insert([
-                    'body' => 'Nel tuo blog è stato inserito un post da'.Auth::User()->name . ' '. Auth::User()->surname, 
+                    'body' => 'Nel tuo blog è stato inserito un post da '.Auth::User()->name . ' '. Auth::User()->surname, 
                     'type' => 'notice',
                     'id_sender' => Auth::id(), 
                     'id_sent_to' => $blog->user->id, 

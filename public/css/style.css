@@ -35,6 +35,15 @@
 	--clr-dark: #000000;
 	/*fine palette default*/
 		
+	/*colori notifiche*/
+	--clr-request: #B1CC74;
+	--clr-requestlg: #D5E3B5;
+	
+	--clr-remove: #BF4E30;
+	--clr-removelg:#E7AD9D;
+	
+	--clr-notice:#B1740F;
+	--clr-noticelg:#F4C67C;
 }
 
 *{
@@ -72,11 +81,11 @@ body::-webkit-scrollbar{
 }
 
 body::-webkit-scrollbar-track{
-    background: var(--clr-secon);
+    background: var(--clr-plat);
 }
 
 body::-webkit-scrollbar-thumb{
-    background: var(--clr-white);
+    background: var(--clr-selacc);
 	border-radius: 2px;
 }
 
@@ -279,6 +288,7 @@ header{
 	flex-direction: column;
 	padding:50px 30px;
 	padding-top:0px;
+	align-items: center;
 }
 
 .form-input-item, .form-item{
@@ -523,8 +533,119 @@ footer{
 	align-items:center;
 }
 
+.centered{
+	margin-top:auto;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:center;
+}
+
 .unite{
 	display: flex;
     flex-direction: column;
 	align-items:center;
 }
+
+/*messaggi*/
+
+.messagetext{
+	width:auto;
+}
+
+.messageviewer{
+	padding: 20px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+}
+
+.messageviewer#messagenormal{
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 80%;
+	align-self:flex-end;
+}
+
+.messageviewer#messagenormalme{
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 80%;
+	align-self:flex-start;
+}
+
+.messageviewerblog{
+	padding: 20px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 100%;
+}
+
+.messageviewer#messagerequest{
+	border:2px solid var(--clr-request);
+	background: var(--clr-requestlg);
+}
+
+.messageviewer#messagenotice{
+	border:2px solid var(--clr-notice);
+	background: var(--clr-noticelg);
+}
+
+.messageviewer#messageremoved{
+	border:2px solid var(--clr-remove);
+	background: var(--clr-removelg);
+}
+
+.messageinfo{
+	display:flex;
+	flex-direction:row;
+	justify-content: space-between;
+}
+
+.messagepag{
+}
+
+.pagination{
+	display:flex;
+	justify-content: center;
+}
+
+.pagination li{
+	margin:0px 10px;
+}
+
+textarea#bodym.input{
+	height:100px;
+	width:100%;
+}
+
+.searchviewer{
+	padding: 10px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 70%;
+}
+
+.searchviewerto{
+	padding: 10px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+	border:2px solid var(--clr-notice);
+	background: var(--clr-noticelg);
+	width: 70%;
+}
+
+.searchinfo{
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content: space-between;
+}
+
+.bold{
+	font-weight:bold;
+}
+

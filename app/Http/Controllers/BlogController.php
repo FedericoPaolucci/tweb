@@ -17,8 +17,12 @@ class BlogController extends Controller
     {
         $myid = Auth::id();
         $myblog = Blog::where('id_owner', $myid)->first();
-        
-        return view('blog.index', compact('myid'),compact('myblog'));
+        if (isset($myblog)){
+           return redirect()->route('blog.show',$myid); 
+        }
+        else{
+            return redirect()->route('blog.create'); 
+        }
     }
 
     /**
@@ -68,10 +72,12 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
+        $myuser=Auth::user();
         $posts = $blog->posts()->orderby('posted_at','desc')->paginate(10);
         return view('blog.show')
                 ->with('posts',$posts)
-                ->with('blog',$blog);
+                ->with('blog',$blog)
+                ->with('myuser',$myuser);
     }
 
     /**
@@ -106,7 +112,7 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->route('blog.index'); //REDIRECT
+        return redirect()->route('user'); //REDIRECT
     }
     
     public function __construct() {

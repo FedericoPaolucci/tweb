@@ -12,7 +12,7 @@ $(document).ready(function(){
 				},
 				success: function (res){
 					if(res.status == 200){
-						thisclick.closest('.posts-container').remove();
+						thisclick.closest('.messageviewerblog').remove();
 						alert(res.message);
 					}else{
 						alert(res.message);
@@ -22,24 +22,9 @@ $(document).ready(function(){
 		}
 	});
 	
-	/*$(document).on('click','#sendnotify',function(){
-			var thisclick = $(this);
-			var blog_id = thisclick.attr('alt');
-			$.ajax({
-				type: "POST",
-				url: "send_notify",
-				data: {
-					'id_blog':blog_id
-				},
-				success: function (res){
-					if(res.status == 200){
-						alert(res.message);
-					}else{
-						alert(res.message);
-					}
-				}
-			});
-	});*/
+	$('.areyousure').click(function() {
+    return confirm('Sei sicuro di voler eliminare il tuo blog?');
+  });
 });
 
 function readURL(input) {
