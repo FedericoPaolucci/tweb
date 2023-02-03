@@ -89,3 +89,7 @@ Route::get('/register', 'Auth\RegisterController@showRegistrationForm')
 Route::post('/register', 'Auth\RegisterController@register');
 
 /*Fine Routes autenticazione */
+
+Route::get('error', function () {
+    return view('error.show', ['alert' => request()->alert]);
+})->name('error');

@@ -603,7 +603,13 @@ footer{
 	justify-content: space-between;
 }
 
-.messagepag{
+.alert{
+	font-weight:bold;
+	padding: 20px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+	border:2px solid var(--clr-remove);
+	background: var(--clr-removelg);
 }
 
 .pagination{

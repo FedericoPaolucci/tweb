@@ -117,5 +117,6 @@ class BlogController extends Controller
     
     public function __construct() {
                 $this->middleware('user')->except('show');
+                $this->middleware('blogaccess')->only('show'); //accessibile solo a chi è amico o a se stesso
     }
 }

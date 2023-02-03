@@ -57,7 +57,7 @@
                 @endempty
                 @endif
             </div>
-            
+
             @else
             <p>L'utente è visibile solo ai suoi amici</p>
             @endif
