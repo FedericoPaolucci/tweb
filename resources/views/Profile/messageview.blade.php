@@ -3,34 +3,34 @@
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left">
-            <!--SCRIVI MESSAGGIO-->
-            <div class="profile-me">
-                {{ Form::open(array('route' => 'messageswrite', 'class' => 'contact-form')) }}
-                @method('POST')
+        <!--SCRIVI MESSAGGIO-->
+        <div class="profile-me">
+            {{ Form::open(array('route' => 'messageswrite', 'class' => 'contact-form')) }}
+            @method('POST')
 
-                {{ Form::hidden('id_sent_to', $that_user->id, ['class' => 'input', 'id' => 'id_sent_to']) }} 
+            {{ Form::hidden('id_sent_to', $that_user->id, ['class' => 'input', 'id' => 'id_sent_to']) }} 
 
-                <div  class="form-input-item">
+            <div  class="form-input-item">
                 <div class="messagetext">Scrivi un messaggio</div>
-                    {{ Form::label('body', ' ', ['class' => 'label-input']) }}
-                    {{ Form::textarea('body', '', ['class' => 'input', 'id' => 'bodym', 'rows'=> '5', 'style' => 'resize:none']) }}
-                    @if ($errors->first('subject'))
-                    <ul class="errors">
-                        @foreach ($errors->get('subject') as $message)
-                        <li>{{ $message }}</li>
-                        @endforeach
-                    </ul>
-                    @endif
-                </div>
-
-                <div class="form-button">                
-                    {{ Form::submit('INVIA', ['class' => 'button']) }}
-                </div>
-
-                {{ Form::close() }}
+                {{ Form::label('body', ' ', ['class' => 'label-input']) }}
+                {{ Form::textarea('body', '', ['class' => 'input', 'id' => 'bodym', 'rows'=> '5', 'style' => 'resize:none']) }}
+                @if ($errors->first('subject'))
+                <ul class="errors">
+                    @foreach ($errors->get('subject') as $message)
+                    <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+                @endif
             </div>
+
+            <div class="form-button">                
+                {{ Form::submit('INVIA', ['class' => 'button']) }}
+            </div>
+
+            {{ Form::close() }}
+        </div>
     </div>
-    
+
     <div class="subcontent" id="center">
         <div class="listed" id="spacebetween">
             <div class="inlisted">
@@ -43,8 +43,19 @@
                     <div class="messagetext">
                         {{$user->name}} {{$user->surname}} Ha mandato una richiesta di amicizia in data: {{$user->pivot->created_at}}
                     </div>
-                    <button id='margintop' onclick= "location.href ='{{ route('friendaccept',$user->id)}}'">ACCETTA</button>
-                    <button id="margintop" onclick= "location.href ='{{ route('friendremove',$user->id)}}'">RIFIUTA</button>
+                    <div class="centered">
+                        {{ Form::open(array('route' => 'friendaccept')) }}
+                        @method('POST')
+                        {{ Form::hidden('id', $user->id, ['class' => 'input', 'id' => 'id']) }}
+                        {{ Form::submit('ACCETTA', ['class' => 'button marginright', 'id' => 'margintop']) }}
+                        {{ Form::close() }}
+
+                        {{ Form::open(array('route' => 'friendremove')) }}
+                        @method('POST')
+                        {{ Form::hidden('id', $user->id, ['class' => 'input', 'id' => 'id']) }}
+                        {{ Form::submit('RIFIUTA', ['class' => 'button marginleft', 'id' => 'margintop']) }}
+                        {{ Form::close() }}
+                    </div>
                 </div>
                 @endif
                 @endforeach
@@ -55,8 +66,8 @@
                 <div class="messageviewer" id="messagenormal">
                     <div class="messagetext">
                         <div class="messageinfo">
-                        <h3>{{$that_user->name}} {{$that_user->surname}}:</h3>
-                        <h4>{{$message->created_at}}</h4>
+                            <h3>{{$that_user->name}} {{$that_user->surname}}:</h3>
+                            <h4>{{$message->created_at}}</h4>
                         </div>
                         {{$message->body}}  
                     </div>
@@ -66,8 +77,8 @@
                 <div class="messageviewer" id="messagenormalme">
                     <div class="messagetext">
                         <div class="messageinfo">
-                        <h3>{{$myuser->name}} {{$myuser->surname}}:</h3>
-                        <h4>{{$message->created_at}}</h4>
+                            <h3>{{$myuser->name}} {{$myuser->surname}}:</h3>
+                            <h4>{{$message->created_at}}</h4>
                         </div>
                         {{$message->body}}  
                     </div>

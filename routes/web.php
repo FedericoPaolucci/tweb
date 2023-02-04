@@ -45,26 +45,32 @@ Route::post('/search','SearchController@find')
 
 //ROUTES MESSAGES E FRIENDS
 Route::get('/messages','MessagesController@messages')
-        ->name('messages');
+        ->name('messages')
+        ->middleware('user');
 
 Route::get('/messages/{id}','MessagesController@messagesview')
-        ->name('messagesview');
+        ->name('messagesview')
+        ->middleware('user');
 
 Route::post('/messages/store','MessagesController@store')
         ->name('messageswrite');
 
-Route::get('/messages/accept/{id}','UserController@friendaccept')
-        ->name('friendaccept');
+Route::post('/messages/accept','UserController@friendaccept')
+        ->name('friendaccept')
+        ->middleware('user');
 
-Route::get('/messages/request/{id}','UserController@friendrequest')
-        ->name('friendrequest');
+Route::post('/messages/request','UserController@friendrequest')
+        ->name('friendrequest')
+        ->middleware('user');
 
-Route::get('/messages/remove/{id}','UserController@friendremove')
-        ->name('friendremove');
+Route::post('/messages/remove','UserController@friendremove')
+        ->name('friendremove')
+        ->middleware('user');
 
 //Routes user
 Route::get('/profile/edit','UserController@edit')
-        ->name('profile.edit');
+        ->name('profile.edit')
+        ->middleware('user');
 
 Route::put('/profile/update','UserController@update')
         ->name('profile.update');

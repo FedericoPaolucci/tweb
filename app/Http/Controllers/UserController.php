@@ -65,7 +65,8 @@ class UserController extends Controller {
     }
     
     //AMICI
-    public function friendaccept($id){
+    public function friendaccept(Request $request){
+        $id = $request->input('id');
         $myuser=Auth::User();
         $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
         $myuser->friendsFrom()
@@ -76,15 +77,17 @@ class UserController extends Controller {
         return redirect()->route('user');
     }
 
-    public function friendrequest($id_user2)
+    public function friendrequest(Request $request)
     {
+        $id_user2 = $request->input('id_user2');
         $user1=Auth::User();
         $user1->friendsTo()->attach($id_user2);
         $user1->messageTo()->attach($id_user2,['type'=>'request','body'=>'amicizia']);
         return redirect()->route('profiles',$id_user2);
     }
     
-    public function friendremove($id){
+    public function friendremove(Request $request){
+        $id = $request->input('id');
         $myuser=Auth::User();
         $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
         $myuser->messageTo()->attach($id,['type'=>'removed','body'=>'rimozione']);

@@ -487,6 +487,14 @@ footer{
 	margin-top:10px;
 }
 
+.marginright{
+	margin-right:10px;
+}
+
+.marginleft{
+	margin-left:10px;
+}
+
 .contact-form-search{
 	display:flex;
 	flex-direction: row;
@@ -582,6 +590,15 @@ footer{
 	width: 100%;
 }
 
+.messageviewersmall{
+	padding: 20px 20px;
+	margin:10px auto;
+	border-radius:30px;
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 80%;
+}
+
 .messageviewer#messagerequest{
 	border:2px solid var(--clr-request);
 	background: var(--clr-requestlg);
@@ -655,3 +672,9 @@ textarea#bodym.input{
 	font-weight:bold;
 }
 
+/*STAFF*/
+
+.textindex{
+	font-weight: bold;
+	font-size:20px;
+}

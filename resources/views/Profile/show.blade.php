@@ -21,14 +21,22 @@
             <!--AGGIUNGI AMICO-->
             @if ($that_user->isfriend($currentid) || $that_user->id == $currentid || $that_user->ispending($currentid))
             @else
-            <button id="margintop" onclick= "location.href ='{{ route('friendrequest',$that_user->id)}}'">AGGIUNGI AMICO</button>
+            {{ Form::open(array('route' => 'friendrequest')) }}
+            @method('POST')
+            {{ Form::hidden('id_user2', $that_user->id, ['class' => 'input', 'id' => 'id']) }}
+            {{ Form::submit('AGGIUNGI AGLI AMICI', ['class' => 'button', 'id' => 'margintop']) }}
+            {{ Form::close() }}
             @endif
             @if ($that_user->ispending($currentid) && $that_user->id != $currentid)
             <p>Richiesta già inviata.</p>
             @endif
             <!--RIMUOVI AMICO-->
             @if ($that_user->isfriend($currentid))
-            <button class='areyousure2' id="margintop" onclick= "location.href ='{{ route('friendremove',$that_user->id)}}'">RIMUOVI AMICO</button>
+            {{ Form::open(array('route' => 'friendremove')) }}
+            @method('POST')
+            {{ Form::hidden('id', $that_user->id, ['class' => 'input', 'id' => 'id']) }}
+            {{ Form::submit('RIMUOVI AMICO', ['class' => 'areyousure2 button', 'id' => 'margintop']) }}
+            {{ Form::close() }}
             @endif
         </div>
     </div>
@@ -47,6 +55,10 @@
                 @isset($that_user->blog)
                 <button onclick= "location.href ='{{ route('blog.show', $that_user->id)}}'">VISUALIZZA BLOG</button>
                 @endisset
+                
+                @if ($that_user->id != $currentid)
+                <button class="marginleft" onclick= "location.href ='{{ route('messagesview', $that_user->id)}}'">INVIA MESSAGGIO</button>
+                @endif
 
                 @if ($that_user->id == $currentid)
                 @empty($that_user->blog)

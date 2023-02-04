@@ -25,6 +25,10 @@ $(document).ready(function(){
 	$('.areyousure').click(function() {
     return confirm('Sei sicuro di voler eliminare il tuo blog?');
   });
+  
+  	$('.areyousure2').click(function() {
+    return confirm('Sei sicuro di voler eliminare questo utente dagli amici?');
+  });
 });
 
 function readURL(input) {
