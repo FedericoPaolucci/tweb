@@ -5,28 +5,43 @@
     <!--RIASSUNTO PROFILO-->
     <div class="subcontent" id="left">
         <div class="profile-me">
-
+            <div class="aligncenter">
+            <div class="textindex-container">
+                <div class="textstaff">
+                    Area riservata allo Staff
+                </div>
+            </div>
+            <div class="textstaffp">{{$mystaff->name}} {{$mystaff->surname}}</div> 
+            <p>#{{$mystaff->username}}</p>
+            <p>Data di nascita: {{ Carbon\Carbon::parse($mystaff->birthday)->format('d-m-Y') }}</p>
+            </div>
         </div>
     </div>
 
     <!--PROFILO-->
     <div class="subcontent" id="center">
         <div class="profile">
-            <div class="textindex-container">
-                <div class="textindex">
-                    Benvenuto {{$mystaff->name}} {{$mystaff->surname}}!
+            <div class="textstaff">Recentemente sono stati pubblicati:</div>
+
+            <!-- ultimi post-->
+            @forelse ($posts as $post)
+            <div class="messageviewerblog_home" onclick= "location.href ='{{ route('blog.show',$post->blog->id_owner)}}'">    
+                <div class="messageinfo">
+                    <h3>
+                        {{ $post->user->name}} {{ $post->user->surname}} ha postato nel Blog "{{$post->blog->subject}}"
+                    </h3>
+                    <div class="messageinfo">
+                        <h4>
+                            {{ Carbon\Carbon::parse($post->posted_at)->format('H:i:s d-m-Y') }}
+                        </h4>
+                    </div>
                 </div>
-                <div class="textindex">
-                    Area riservata allo Staff del sito.
-                </div>
+                {{ $post->body }}
             </div>
-        </div>
-    </div>
-
-    <!-- TABELLA LATERALE-->
-    <div class="subcontent" id="right">
-        <div class="profile-friends">
-
+            @empty
+            Niente da vedere.
+            @endforelse
+            
         </div>
     </div>
 </div>

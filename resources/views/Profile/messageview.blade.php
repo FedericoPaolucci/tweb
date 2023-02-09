@@ -5,6 +5,9 @@
     <div class="subcontent" id="left">
         <!--SCRIVI MESSAGGIO-->
         <div class="profile-me">
+            @if ($that_user->role == 'admin' || $that_user->role == 'staff')
+            <div class="textstaff">Messaggi da parte di un membro dello Staff</div>
+            @else
             {{ Form::open(array('route' => 'messageswrite', 'class' => 'contact-form')) }}
             @method('POST')
 
@@ -28,6 +31,7 @@
             </div>
 
             {{ Form::close() }}
+            @endif
         </div>
     </div>
 
@@ -121,7 +125,9 @@
                 <h2>{{$that_user->name}} {{$that_user->surname}}</h2> 
                 <p>#{{$that_user->username}}</p>
             </div>
+            @if ($that_user->role == 'user')
             <button onclick= "location.href ='{{ route('profiles',$that_user->id)}}'">VAI AL PROFILO</button>
+            @endif
         </div>
     </div>
 </div>

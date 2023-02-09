@@ -317,6 +317,27 @@ header{
 	color: var(--clr-white);
 }
 
+.deleteblog_admin{
+	font-family:victor_monoregular;
+	font-weight: 300;
+    font-size: 16px;
+    color: var(--clr-dark);
+    text-decoration: none;
+	padding:5px 25px;
+    background: var(--clr-removelg);
+    color: var(--clr-dark);
+    font-weight: bold;
+    border:none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0s linear;
+}
+
+.deleteblog_admin:hover{
+    background-color: var(--clr-remove);
+	color: var(--clr-white);
+}
+
 /*fine login content*/
 
 /* animazione home*/
@@ -588,6 +609,12 @@ footer{
 	border:2px solid var(--clr-seconlg);
 	background: var(--clr-light);
 	width: 100%;
+	transition: all 0.1s ease-in-out;
+}
+
+.messageviewerblog:hover{
+	border:2px solid var(--clr-accent);
+	background: var(--clr-plat);
 }
 
 .messageviewersmall{
@@ -597,6 +624,33 @@ footer{
 	border:2px solid var(--clr-seconlg);
 	background: var(--clr-light);
 	width: 80%;
+	transition: all 0.1s ease-in-out;
+}
+
+
+.messageviewersmall:hover{
+	border:2px solid var(--clr-accent);
+	background: var(--clr-plat);
+}
+
+.messageviewerblog_home{
+	padding: 20px 20px;
+	margin:10px 0px;
+	border-radius:30px;
+	border:2px solid var(--clr-seconlg);
+	background: var(--clr-light);
+	width: 100%;
+	transition: all 0.3s ease;
+	cursor:pointer;
+}
+
+.messageviewerblog_home:hover{
+	border:2px solid var(--clr-accent);
+	background: var(--clr-plat);
+	border-top-left-radius:0px;
+	border-bottom-left-radius:0px;
+	border-top-right-radius:50px;
+	border-bottom-right-radius:50px;
 }
 
 .messageviewer#messagerequest{
@@ -672,9 +726,107 @@ textarea#bodym.input{
 	font-weight:bold;
 }
 
+.deletepost{
+	width:25px;
+	height:25px;
+    cursor: pointer;
+	margin-left:10px;
+}
+
+.deletepost_admin{
+	width:25px;
+	height:25px;
+    cursor: pointer;
+	margin-left:10px;
+}
+
+.blogtitle{
+	font-weight:bold;
+	font-size:24px;
+	color:var(--clr-secon);
+}
+
+.blog-info{
+	
+}
 /*STAFF*/
 
 .textindex{
 	font-weight: bold;
 	font-size:20px;
 }
+
+.textstaff{
+	font-weight:bold;
+	font-size:20px;
+	color: var(--clr-red);
+	text-decoration: underline;
+}
+
+.textadmin{
+	font-weight:bold;
+	font-size:20px;
+	color: green;
+	text-decoration: underline;
+}
+
+.textstaffp{
+	font-weight:bold;
+	font-size:26px;
+	color: var(--clr-red);
+}
+
+.textadminp{
+	font-weight:bold;
+	font-size:26px;
+	color: green;
+}
+
+.textadmins{
+	font-weight:bold;
+	font-size:20px;
+	color: green;
+}
+
+.aligncenter{
+	text-align:center;
+}
+
+.counter{
+	font-weight:bold;
+	font-family:victor_monoregular;
+	font-size: 30px;
+}
+
+.form-control{
+	margin: 10px 0px;
+    width: 80%;
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.form-control:focus {
+    outline: none !important;
+    border:1px solid green;
+	box-shadow: 0px 0px 3px 0px var(--clr-requestlg);
+  }
+  
+  .elencostaff{
+	padding: 10px 10px;
+	margin-bottom:10px;
+	border-radius:30px;
+	border:2px solid var(--clr-selacc);
+	background: var(--clr-plat);
+	width: 50%;
+	align-self: center;
+    text-align: center;
+	font-weight:bold;
+	font-size:20px;
+	transition: all 0.3s ease;
+  }
+  
+    .elencostaff:hover{
+	border:2px solid var(--clr-selacc);
+	background: var(--clr-accent);
+  }

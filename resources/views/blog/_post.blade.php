@@ -7,12 +7,18 @@
         <h3>
             {{ $post->user->name }} {{ $post->user->surname }}
         </h3>
-        <h4>
-            {{ $post->posted_at }}
+        <div class="messageinfo">
+            <h4>
+                {{ Carbon\Carbon::parse($post->posted_at)->format('H:i:s d-m-Y') }}
+            </h4>
             @if (Auth::check() && Auth::id() == $post->id_writer)
-            <img src='{{ asset('img/X.svg') }}' class="deletepost" alt="{{$post->id}}" width="20px" height="20px">
+            <img src='{{ asset('img/X.svg') }}' class="deletepost" alt="{{$post->id}}">
             @endif
-        </h4>
+            @if (Auth::check() && ($myuser->role == 'staff' || $myuser->role =='admin'))
+            <img src='{{ asset('img/X.svg') }}' class="deletepost_admin" alt='{{$post->id}}' altt="{{$post->body}}">
+            @endif
+
+        </div>
     </div>
     {{ $post->body }}
 </div> 
@@ -22,12 +28,18 @@
         <h3>
             {{ $post->user->name }} {{ $post->user->surname }}
         </h3>
-        <h4>
-            {{ $post->posted_at }}
+        <div class="messageinfo">
+            <h4>
+                {{ Carbon\Carbon::parse($post->posted_at)->format('H:i:s d-m-Y') }}
+            </h4>
             @if (Auth::check() && Auth::id() == $post->id_writer)
-            <img src='{{ asset('img/X.svg') }}' class="deletepost" alt="{{$post->id}}" width="20px" height="20px">
+            <img src='{{ asset('img/X.svg') }}' class="deletepost" alt="{{$post->id}}">
             @endif
-        </h4>
+            @if (Auth::check() && ($myuser->role == 'staff' || $myuser->role =='admin'))
+            <img src='{{ asset('img/X.svg') }}' class="deletepost_admin" alt='{{$post->id}}' altt="{{$post->body}}">
+            @endif
+
+        </div>
     </div>
     {{ $post->body }}
 </div> 
@@ -38,3 +50,11 @@
 <p>
     {{$posts->links()}}
 </p>
+
+
+<div id="notifybody" style="display: none;">
+    <form id="notifyform">
+        <textarea name="body"></textarea>
+        <input type="submit" class="button" value="Invia">
+    </form>
+</div>

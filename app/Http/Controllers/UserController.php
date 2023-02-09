@@ -52,54 +52,62 @@ class UserController extends Controller {
     public function show($thisid) {
         $that_user = User::where('id', $thisid)->first();
         $currentid = Auth::id();
-        $isfriend='0';
+        $isfriend = '0';
         foreach ($that_user->friends() as $friend) {
             if ($friend->id == $currentid) {
-                $isfriend='1';
+                $isfriend = '1';
             }
         }
         return view('Profile.show')
-            ->with(compact('that_user'))
-            ->with(compact('currentid'))
-            ->with(compact('isfriend'));
+                        ->with(compact('that_user'))
+                        ->with(compact('currentid'))
+                        ->with(compact('isfriend'));
     }
-    
+
     //AMICI
-    public function friendaccept(Request $request){
+    public function friendaccept(Request $request) {
         $id = $request->input('id');
-        $myuser=Auth::User();
-        $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
+        $myuser = Auth::User();
+        $myuser->messageFrom()->wherePivot('type', 'request')->detach($id); //PER EVITARE RIPETIZIONI
         $myuser->friendsFrom()
-                ->where('id_user1',$id)
+                ->where('id_user1', $id)
                 ->get();
         $myuser->friendsFrom()->updateExistingPivot($id, ['accepted' => true]);
-        
+
         return redirect()->route('user');
     }
 
-    public function friendrequest(Request $request)
-    {
+    public function friendrequest(Request $request) {
         $id_user2 = $request->input('id_user2');
-        $user1=Auth::User();
+        $user1 = Auth::User();
         $user1->friendsTo()->attach($id_user2);
-        $user1->messageTo()->attach($id_user2,['type'=>'request','body'=>'amicizia']);
-        return redirect()->route('profiles',$id_user2);
+        $user1->messageTo()->attach($id_user2, ['type' => 'request', 'body' => 'amicizia']);
+        return redirect()->route('profiles', $id_user2);
     }
-    
-    public function friendremove(Request $request){
+
+    public function friendremove(Request $request) {
         $id = $request->input('id');
-        $myuser=Auth::User();
-        $myuser->messageFrom()->wherePivot('type','request')->detach($id); //PER EVITARE RIPETIZIONI
-        $myuser->messageTo()->attach($id,['type'=>'removed','body'=>'rimozione']);
+        $myuser = Auth::User();
+        $myuser->messageFrom()->wherePivot('type', 'request')->detach($id); //PER EVITARE RIPETIZIONI
+        $myuser->messageTo()->attach($id, ['type' => 'removed', 'body' => 'rimozione']);
         DB::table('friendships')
-        ->where('id_user1', $myuser->id)
-        ->where('id_user2', $id)
-        ->update(array('deleted_at' => DB::raw('NOW()')));
+                ->where('id_user1', $myuser->id)
+                ->where('id_user2', $id)
+                ->update(array('deleted_at' => DB::raw('NOW()')));
         DB::table('friendships')
-        ->where('id_user1', $id)
-        ->where('id_user2', $myuser->id)
-        ->update(array('deleted_at' => DB::raw('NOW()')));
-        
+                ->where('id_user1', $id)
+                ->where('id_user2', $myuser->id)
+                ->update(array('deleted_at' => DB::raw('NOW()')));
+
         return redirect()->route('user');
     }
+
+    public function updateRole(Request $request) {
+        $user = User::find($request->user_id);
+        $user->role = $request->role;
+        $user->save();
+
+        return back()->with('success', 'Il ruolo dell utente è stato aggiornato con successo!');
+}
+
 }

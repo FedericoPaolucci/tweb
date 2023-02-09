@@ -6,22 +6,20 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BlogController extends Controller
-{
+class BlogController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $myid = Auth::id();
         $myblog = Blog::where('id_owner', $myid)->first();
-        if (isset($myblog)){
-           return redirect()->route('blog.show',$myid); 
-        }
-        else{
-            return redirect()->route('blog.create'); 
+        if (isset($myblog)) {
+            return redirect()->route('blog.show', $myid);
+        } else {
+            return redirect()->route('blog.create');
         }
     }
 
@@ -30,8 +28,7 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         return view('blog.create');
     }
 
@@ -41,27 +38,22 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         $request->validate([
             'subject' => 'required|max:50',
             'about' => 'required|max:400'
         ]);
-        $myid=Auth::id();
-        
-        if (Blog::withTrashed()->where('id_owner', $myid)->exists()){
-            $oldblog=Blog::withTrashed()->where('id_owner',$myid)->first();
-            $oldblog->forcedelete();
-        }
+        $myid = Auth::id();
+
         $blog = new Blog();
-        
+
         $blog->subject = $request->input('subject');
         $blog->about = $request->input('about');
         $blog->id_owner = $myid;
-              
+
         $blog->save();
-        
-        return redirect()->route('blog.show',$blog->id_owner); //REDIRECT
+
+        return redirect()->route('blog.show', $blog->id_owner); //REDIRECT
     }
 
     /**
@@ -70,14 +62,25 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
-    {
-        $myuser=Auth::user();
-        $posts = $blog->posts()->orderby('posted_at','desc')->paginate(10);
-        return view('blog.show')
-                ->with('posts',$posts)
-                ->with('blog',$blog)
-                ->with('myuser',$myuser);
+    public function show(Blog $blog) {
+        $myuser = Auth::user();
+        $posts = $blog->posts()->orderby('posted_at', 'desc')->paginate(10);
+        if ($myuser->role == 'admin') {
+            return view('blog.showadmin')
+                            ->with('posts', $posts)
+                            ->with('blog', $blog)
+                            ->with('myuser', $myuser);
+        } elseif ($myuser->role == 'staff') {
+            return view('blog.showstaff')
+                            ->with('posts', $posts)
+                            ->with('blog', $blog)
+                            ->with('myuser', $myuser);
+        } elseif ($myuser->role == 'user') {
+            return view('blog.show')
+                            ->with('posts', $posts)
+                            ->with('blog', $blog)
+                            ->with('myuser', $myuser);
+        }
     }
 
     /**
@@ -86,8 +89,7 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
-    {
+    public function edit(Blog $blog) {
         //
     }
 
@@ -98,8 +100,7 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
-    {
+    public function update(Request $request, Blog $blog) {
         //
     }
 
@@ -109,14 +110,23 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
-    {
+    public function destroy(Blog $blog) {
         $blog->delete();
         return redirect()->route('user'); //REDIRECT
     }
     
-    public function __construct() {
-                $this->middleware('user')->except('show');
-                $this->middleware('blogaccess')->only('show'); //accessibile solo a chi è amico o a se stesso
+    
+    public function destroy_admin(Request $request) {
+        $blog = Blog::where('id_owner',$request->id)->first();
+        $myuser = Auth::user();
+        $testo= 'il tuo blog: "' . $request->subject . '" è stato eliminato per il seguente motivo: ' . $request->body;
+        $myuser->messageTo()->attach($request->id,['type'=>'notice','body'=>$testo]);
+        $blog->delete();
     }
+
+    public function __construct() {
+        $this->middleware('user')->except('show','destroy_admin');
+        $this->middleware('blogaccess')->only('show'); //accessibile solo a chi è amico o a se stesso
+    }
+
 }

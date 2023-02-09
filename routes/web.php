@@ -39,9 +39,18 @@ Route::post('/post','PostController@store')
 Route::post('/blog/post_delete','PostController@destroy')
         ->name('post_delete');
 
+Route::post('/blog/post_delete_admin','PostController@destroy_admin')
+        ->name('post_delete_admin');
+
+Route::post('/blog/destroy_admin','BlogController@destroy_admin')
+        ->name('blog_destroy_admin');
+
 //Routes search
 Route::post('/search','SearchController@find')
         ->name('search');
+
+Route::post('/searchblog','SearchController@findblog')
+        ->name('searchblog');
 
 //ROUTES MESSAGES E FRIENDS
 Route::get('/messages','MessagesController@messages')
@@ -76,7 +85,8 @@ Route::put('/profile/update','UserController@update')
         ->name('profile.update');
 
 Route::get('/profile/{thisid}','UserController@show')
-        ->name('profiles');
+        ->name('profiles')
+        ->middleware('user');
 
 
 /* Routes per l'autenticazione */
@@ -99,3 +109,25 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('error', function () {
     return view('error.show', ['alert' => request()->alert]);
 })->name('error');
+
+/*ROUTES STAFF O ADMIN*/
+
+Route::get('/moderation', 'StaffController@moderation')
+        ->name('moderation')
+        ->middleware('staff');
+
+Route::get('/managestaff', 'AdminController@managestaff')
+        ->name('managestaff')
+        ->middleware('admin');
+
+Route::get('/community', 'AdminController@community')
+        ->name('community')
+        ->middleware('admin');
+
+Route::post('/updaterole', 'UserController@updateRole')
+        ->name('updaterole')
+        ->middleware('admin');
+
+Route::get('/community/showuserinfo', 'AdminController@showuserinfo')
+        ->name('showuserinfo')
+        ->middleware('admin');

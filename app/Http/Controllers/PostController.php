@@ -113,5 +113,25 @@ class PostController extends Controller {
             ]);
         }
     }
+    
+    public function destroy_admin(Request $request) {
+        if (Auth::check()) {
+            $post = Post::where('id', $request->id)->first();
+            $myuser= Auth::User();
+            $testo= 'il tuo post: "' . $request->postbody . '" è stato eliminato per il seguente motivo: ' . $request->body;
+            $myuser->messageTo()->attach($post->id_writer,['type'=>'notice','body'=>$testo]);
+            
+            $post->delete();
+            return response()->json([
+                        'status' => 200,
+                        'message' => 'Post eliminato correttamente'
+            ]);
+        } else {
+            return response()->json([
+                        'status' => 401,
+                        'message' => 'Errore'
+            ]);
+        }
+    }
 
 }

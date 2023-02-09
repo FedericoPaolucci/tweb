@@ -5,8 +5,8 @@
     <div class="subcontent" id="left">
         <div class="profile-me">
             <div class='Blog-info'>
-                <h2>Tema: {{$blog->subject}}</h2>
-                <div>Descrizione: {{$blog->about}}</div>
+                <h3>Tema: <span class="blogtitle">{{$blog->subject}}</span></h3>
+                <div><span style='font-weight: bold;'>Descrizione:</span> {{$blog->about}}</div>
             </div>
             <!--FORM CREAZIONE NUOVO POST-->
             {{ Form::open(array('route' => 'post', 'class' => 'contact-form')) }}
@@ -55,11 +55,11 @@
                 <h2>{{$blog->user->name}} {{$blog->user->surname}}</h2> 
                 <p>#{{$blog->user->username}}</p>
             </div>
-            
+
             @if ($myuser->id != $blog->id_owner)
             <button onclick= "location.href ='{{ route('profiles',$blog->user->id)}}'">VAI AL PROFILO</button>
             @endif
-            
+
             <!--ELIMINAZIONE BLOG-->
             @if ($myuser->id == $blog->id_owner)
             {{ Form::open(array('route' => ['blog.destroy', $myuser->id], 'class' => 'contact-form')) }}
