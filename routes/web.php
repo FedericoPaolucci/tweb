@@ -34,10 +34,12 @@ Route::resource('blog','BlogController'); //BLOG RESOURCES
 
 //Routes per i post nel blog
 Route::post('/post','PostController@store')
-        ->name('post');
+        ->name('post')
+        ->middleware('user');
 
 Route::post('/blog/post_delete','PostController@destroy')
-        ->name('post_delete');
+        ->name('post_delete')
+        ->middleware('user');
 
 Route::post('/blog/post_delete_admin','PostController@destroy_admin')
         ->name('post_delete_admin');
@@ -47,7 +49,8 @@ Route::post('/blog/destroy_admin','BlogController@destroy_admin')
 
 //Routes search
 Route::post('/search','SearchController@find')
-        ->name('search');
+        ->name('search')
+        ->middleware('user');
 
 Route::post('/searchblog','SearchController@findblog')
         ->name('searchblog');
@@ -128,6 +131,6 @@ Route::post('/updaterole', 'UserController@updateRole')
         ->name('updaterole')
         ->middleware('admin');
 
-Route::get('/community/showuserinfo', 'AdminController@showuserinfo')
-        ->name('showuserinfo')
+Route::post('/community/requestuser', 'AdminController@requestuser')
+        ->name('requestuser')
         ->middleware('admin');

@@ -1,5 +1,13 @@
 @extends ('layouts.user')
 
+@section('title')
+@if ($that_user->id == $currentid)
+Il mio Profilo
+@else
+Profilo di {{$that_user->username}}
+@endif
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <!--RIASSUNTO PROFILO-->

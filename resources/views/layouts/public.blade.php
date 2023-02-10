@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
-        <title>Homepage pubblica</title>
+        <title>
+        @yield('title')
+        </title>
     </head>
     <body class="bodyauth">
         

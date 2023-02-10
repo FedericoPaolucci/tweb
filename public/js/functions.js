@@ -111,6 +111,23 @@ var thisclick;
   
   
   //ADMIN-> funzione di restituzione delle info per ogni user
+	 $("#showinfo").click(function(e) {
+		e.preventDefault();
+		const userId = $("#userselect").val();
+
+		$.ajax({
+			url: "community/requestuser",
+			type: "POST",
+			data: { id: userId },
+			success: function(data) {
+				$("#friend-list").empty();
+				$.each(data.friends, function(index, friend) {
+				$("#friend-list").append("<div class='elementfriend'>" + friend.name + " " + friend.surname + "</div>");
+				});
+				$("#friendcount").text(data.friendCount);
+        }
+		});
+    });
 	
 });
 

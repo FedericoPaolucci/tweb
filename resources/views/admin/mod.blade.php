@@ -1,5 +1,9 @@
 @extends ('layouts.staff')
 
+@section('title')
+Messaggi moderazione
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left"></div>

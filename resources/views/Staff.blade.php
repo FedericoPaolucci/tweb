@@ -1,5 +1,9 @@
 @extends ('layouts.staff')
 
+@section('title')
+Staff Home
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <!--RIASSUNTO PROFILO-->

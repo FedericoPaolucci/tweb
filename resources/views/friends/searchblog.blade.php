@@ -1,5 +1,9 @@
 @extends ('layouts.staff')
 
+@section('title')
+Risultati
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left"></div>

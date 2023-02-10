@@ -4,14 +4,16 @@
         <meta charset="utf-8">
         <meta name="csrf-token" content="{{ csrf_token() }}"> <!--per effettuare correttamente alcune richieste-->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
-        <title>Homepage pubblica</title>
+        <title>
+        @yield('title')
+        </title>
     </head>
     <body class="bodydef">
 
         <!-- HEADER -->
         <header>
             <div class="header-row">
-                <p class="logo" id="logonav" onclick="location.href ='{{route('user')}}'"> LOGOCOMMUNITY </p>
+                <p class="logo" id="logonav" onclick="location.href ='{{route('user')}}'"> G_64COMMUNITY </p>
 
                 <div id="searchbar">
                     {{ Form::open(array('route' => 'searchblog', 'class' => 'contact-form-search')) }}

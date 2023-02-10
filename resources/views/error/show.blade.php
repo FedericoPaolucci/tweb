@@ -1,5 +1,9 @@
 @extends ('layouts.user')
 
+@section('title')
+Errore
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left"></div>

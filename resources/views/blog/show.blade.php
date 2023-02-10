@@ -1,5 +1,13 @@
 @extends ('layouts.user')
 
+@section('title')
+@if ($myuser->id == $blog->id_owner)
+Il mio Blog
+@else
+Blog: {{$blog->subject}}
+@endif
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left">

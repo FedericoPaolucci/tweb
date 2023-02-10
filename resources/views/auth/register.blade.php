@@ -1,6 +1,10 @@
 @extends('layouts.public')
 
-<!--@section('title', 'Registrazione') da implementare-->
+
+@section('title')
+G_64Community
+@endsection
+
 
 @section('script')
 <script src="{{ asset('js/jquery.js')}}"></script>

@@ -788,6 +788,13 @@ textarea#bodym.input{
 	color: green;
 }
 
+.textadminsp{
+	font-weight:bold;
+	font-size:20px;
+	color: green;
+	margin-bottom:10px;
+}
+
 .aligncenter{
 	text-align:center;
 }
@@ -827,6 +834,25 @@ textarea#bodym.input{
   }
   
     .elencostaff:hover{
+	border:2px solid var(--clr-selacc);
+	background: var(--clr-accent);
+  }
+  
+  .elementfriend{
+	padding: 10px 10px;
+	margin-bottom:10px;
+	border-radius:30px;
+	border:2px solid var(--clr-selacc);
+	background: var(--clr-plat);
+	width: 50%;
+	align-self: center;
+    text-align: center;
+	font-weight:bold;
+	font-size:20px;
+	transition: all 0.3s ease;
+  }
+  
+    .elementfriend:hover{
 	border:2px solid var(--clr-selacc);
 	background: var(--clr-accent);
   }

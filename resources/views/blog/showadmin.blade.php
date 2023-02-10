@@ -1,5 +1,9 @@
 @extends ('layouts.admin')
 
+@section('title')
+Blog: {{$blog->subject}}
+@endsection
+
 @section ('content')
 <div class="content-container content">
     <div class="subcontent" id="left">
