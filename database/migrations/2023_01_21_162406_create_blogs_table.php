@@ -17,7 +17,6 @@ class CreateBlogsTable extends Migration
             
             $table->unsignedBigInteger('id_owner');
             $table->string('subject');
-            $table->string('url')->default('/img/default.png');
             $table->text('about')->nullable();
             $table->timestamp('created_at');
             

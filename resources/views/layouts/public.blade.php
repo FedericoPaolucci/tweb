@@ -13,7 +13,7 @@
             @include('info/general')
             <footer id="footerfloat">
                 <nav>
-                    @include('layouts/_footer')
+                    @include('layouts/_footerp')
                 </nav>
             </footer>
         </div>

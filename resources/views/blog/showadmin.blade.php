@@ -39,6 +39,7 @@ Blog: {{$blog->subject}}
 </div>
 <div id="notifybody2" style="display: none;">
     <form id="notifyform2">
+        <div class="textindex">Perchè vuoi eliminare il Blog?</div>
         <textarea name="body"></textarea>
         <input type="submit" class="button" value="Invia">
     </form>

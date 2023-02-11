@@ -13,8 +13,8 @@ G_64Community
 
 @section('loginform')
 <div class="auth-container" id="auth-idcont">
-    <h3>Registrazione</h3>
-    <p>Utilizza questa form per registrarti al sito</p>
+    <h3 class="textindex">Registrazione</h3>
+    <p>Inserisci i tuoi dati.</p>
 
 
 

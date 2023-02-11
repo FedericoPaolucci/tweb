@@ -54,16 +54,17 @@ Profilo di {{$that_user->username}}
         <div class="profile">
             @if ($that_user->id == $currentid || $that_user->visibility == '1' || $isfriend == '1')
             <div class="profile-item">
-                <h2>Su di me.</h2>
-                <p>{{$that_user->profile}}</p>
-
+                <div class="listed">
+                    <h2 class="textindex">Qualcosa su di me...</h2>
+                    <p>{{$that_user->profile}}</p>
+                </div>
             </div>
 
             <div class="centered"> 
                 @isset($that_user->blog)
                 <button onclick= "location.href ='{{ route('blog.show', $that_user->id)}}'">VISUALIZZA BLOG</button>
                 @endisset
-                
+
                 @if ($that_user->id != $currentid)
                 <button class="marginleft" onclick= "location.href ='{{ route('messagesview', $that_user->id)}}'">INVIA MESSAGGIO</button>
                 @endif
@@ -90,16 +91,17 @@ Profilo di {{$that_user->username}}
             <!-- TABELLA AMICI-->
             @if ($that_user->id == $currentid || $that_user->visibility == '1' || $isfriend == '1')
             <div class="side">
-                <div class="title">
+                <div class="textindex">
                     GRUPPO DEGLI AMICI 
                 </div>
                 <div class="allfriends">
                     @forelse ($that_user->friends() as $friend)
-                    <button id="margintop" onclick= "location.href ='{{ route('profiles',$friend->id)}}'">{{$friend->name}} {{$friend->surname}}</button>
+                    <button class="elementfriendb" onclick= "location.href ='{{ route('profiles',$friend->id)}}'">{{$friend->name}} {{$friend->surname}}</button>
                     @empty
                     <p>Nessun amico...</p>
                     @endforelse
                 </div>
+
             </div>
             @endif 
         </div>

@@ -18,7 +18,7 @@
                 <div id="searchbar">
                     {{ Form::open(array('route' => 'search', 'class' => 'contact-form-search')) }}
                     @method('POST')
-                    {{ Form::text('searched','Nome Cognome', ['class' => 'input', 'id' => 'searched']) }}
+                    {{ Form::text('searched','Nome Cognome', ['class' => 'inputs', 'id' => 'searched']) }}
                     @if ($errors->first('searched'))
                     <ul class="errors">
                         @foreach ($errors->get('searched') as $message)

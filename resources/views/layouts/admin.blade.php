@@ -18,7 +18,7 @@
                 <div id="searchbar">
                     {{ Form::open(array('route' => 'searchblog', 'class' => 'contact-form-search')) }}
                     @method('POST')
-                    {{ Form::text('searched','Nome Cognome', ['class' => 'input', 'id' => 'searched']) }}
+                    {{ Form::text('searched','Nome Cognome', ['class' => 'inputs', 'id' => 'searched']) }}
                     <div class="form-button">                
                         {{ Form::submit('RICERCA', ['class' => 'buttonsearch']) }}
                     </div>

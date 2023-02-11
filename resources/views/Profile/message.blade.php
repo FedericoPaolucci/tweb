@@ -8,8 +8,8 @@ I tuoi messaggi
 <div class="content-container content">
     <div class="subcontent" id="left"></div>
     <div class="subcontent" id="center">
-        <div class="listed">
-
+        <div class="listed" style="align-items:center;">
+            <div class="textindex">MESSAGGI</div>
             @foreach ($myuser->notyetviewed() as $notify)
             @if ($notify->pivot->id_sender != $myuser->id)
             @if ($notify->role == 'user')

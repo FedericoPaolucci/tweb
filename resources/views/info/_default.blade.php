@@ -4,4 +4,5 @@
 <div class="container-text">---------</div>
 <div class="container-text">Sito sviluppato e gestito da Federico Paolucci.</div>
 <div class="container-text">Progetto Tecnologie Web Extra 2022</div>
+<div class="container-text">La documentazione è disponibile nell'area Info in basso.</div>
 

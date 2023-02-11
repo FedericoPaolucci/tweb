@@ -54,6 +54,7 @@
 
 <div id="notifybody" style="display: none;">
     <form id="notifyform">
+        <div class="textindex">Perchè vuoi eliminare il Post?</div>
         <textarea name="body"></textarea>
         <input type="submit" class="button" value="Invia">
     </form>

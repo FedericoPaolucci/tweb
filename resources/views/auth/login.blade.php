@@ -13,8 +13,8 @@ G_64Community
 
 @section('loginform')
 <div class="auth-container" id="auth-idcont">
-    <h3>Login</h3>
-    <p>Utilizza questa form per autenticarti al sito</p>
+    <h3 class="logintext">Login</h3>
+    <p>Autenticati al sito</p>
 
         
             {{ Form::open(array('route' => 'login', 'class' => 'contact-form')) }}

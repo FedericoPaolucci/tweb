@@ -10,7 +10,7 @@ Crea Blog
     <div class="subcontent" id="center">
         <div class="listed">
             <div id="form-container">
-                <h3>Creazione Blog</h3> 
+                <h3 class="textblogcreate aligncenter">Creazione Blog</h3> 
 
                 {{ Form::open(array('route' => 'blog.store', 'class' => 'contact-form')) }}
                 @method('POST')
@@ -31,7 +31,7 @@ Crea Blog
 
                 <div  class="form-input-item">
                     {{ Form::label('about', 'Descrizione', ['class' => 'label-input']) }}
-                    {{ Form::text('about', '', ['class' => 'input', 'id' => 'about']) }}
+                    {{ Form::textarea('about', '', ['class' => 'input', 'id' => 'about', 'rows'=> '5','style' => 'resize:none']) }}
 
                     @if ($errors->first('about'))
                     <ul class="errors">

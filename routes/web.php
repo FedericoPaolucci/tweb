@@ -16,6 +16,18 @@
 Route::get('/', 'publicController@home')
         ->name('homepublic');
 
+Route::get('/aboutus', 'publicController@aboutus')
+        ->name('aboutus');
+
+Route::get('/download/{nomefile}', 'publicController@download')
+        ->name('download_doc');
+
+Route::get('/info', 'publicController@info')
+        ->name('info');
+
+Route::get('/terms', 'publicController@terms')
+        ->name('terms');
+
 Route::get('/user', 'UserController@index')
         ->name('user')
         ->middleware('user');
