@@ -14,10 +14,6 @@ class UserController extends Controller {
         return redirect()->route('profiles', $myid);
     }
 
-    public function searchindex() {
-        return view('friends.search');
-    }
-
     public function edit() {
         $current_user = User::find(Auth::id());
         return view('Profile.profile_edit', compact('current_user'));

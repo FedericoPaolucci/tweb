@@ -47,8 +47,7 @@ class AdminController extends Controller {
         $friendCount = DB::table('friendships')
                 ->join('users as user1', 'friendships.id_user1', '=', 'user1.id')
                 ->join('users as user2', 'friendships.id_user2', '=', 'user2.id')
-                ->where('friendships.id_user1', $request->id)
-                ->orWhere('friendships.id_user2', $request->id)
+                ->where('friendships.id_user2', $request->id)
                 ->count();
         return response()->json([
                     "friends" => $friends,
